@@ -13,7 +13,7 @@
 
 @extends('layouts.admin')
 
-@section('title', 'QA casemanager')
+@section('title', 'QA Afta')
 @section('content')
 <script>
   //script to change active class in submenus
@@ -25,7 +25,7 @@
 <div class="row">
   <div class="col-xl-12">
     <div class="breadcrumb-holder">
-      <h1 class="main-title float-left">Case manager Quality</h1>
+      <h1 class="main-title float-left">Aftha qualifiers form</h1>
       <ol class="breadcrumb float-right">
         <li class="breadcrumb-item">Home</li>
         <li class="breadcrumb-item active">Aftha</li>
@@ -42,7 +42,7 @@
         </div>
 
         <div class="card-body ">
-          <form class="was-validated row" method="POST" action="{{route('admin.case_manager.store')}} ">
+          <form class="was-validated row" method="POST" action="{{route('aftha.form.store')}} ">
             <div class="col-md-6 col-lg-6 col-xl-6">
               <div class="form-group">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">

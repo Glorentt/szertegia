@@ -58,12 +58,15 @@ Route::prefix('admin')->group(function (){
 
     //Routes for Scores
     Route::get('/scoreAftha','admin\scoreController@index')->name('admin.aftha.score');
+    
     Route::DELETE('/scoreAftha/{id}','admin\aftha_program@destroy')->name('admin.aftha.score.delete');
     Route::get('/scoreShowslinger','admin\scoreController@showslinger_scores')->name('admin.showslinger.score');
     Route::get('/getScores/data.json/all', ['uses' =>'admin\aftha_program@getAllScores']);
     Route::get('/getScoresShowslinger/data.json/all', ['uses' =>'admin\ShowSlingerController@getAllScores']);
     Route::get('/getcomments/{id}','admin\aftha_program@getComments');
     Route::get('/getcommentsShowslinger/{id}','admin\ShowSlingerController@getComments');
+    //Case managers scores
+    Route::get('/scoreCase','admin\scoreController@casemanagers_scores')->name('admin.case.score');
 
     });
 });

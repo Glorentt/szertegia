@@ -28,7 +28,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <div class="card mb-3">
             <div class="card-header">
-                <h3><i class="fa fa-table"></i> Aftha Qualifiers</h3>
+                <h3><i class="fa fa-table"></i> Case Managers scores</h3>
                 All the scores will be displayed bellow,
             </div>
 

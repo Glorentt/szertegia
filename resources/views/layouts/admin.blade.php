@@ -162,6 +162,7 @@
 								<!-- <li><a href="{{route('admin.aftha.score')}} "  id="sub_evaluate_aftha" >All Campaigns</a></li> -->
 								<li><a href="{{route('admin.aftha.score')}} " id="sub_evaluate_aftha" >Aftha</a></li>
                                 <li><a href="{{route('admin.showslinger.score')}} " id="sub_evaluate_aftha" >showslinger</a></li>
+								<li><a href="{{route('admin.case.score')}} " id="sub_evaluate_aftha" >CaseManagers</a></li>
 						    </ul>
                     </li>
             </ul>
