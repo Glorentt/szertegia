@@ -156,7 +156,8 @@ Route::prefix('agent')->group(function (){
         'update'=>'agent.showslingers.update'
     ]);
     Route::resource('/notes','agent\NotesController')->names([
-        'index'=>'agent.notes'
+        'index'=>'agent.notes',
+        'store'=>'agent.note.store'
     ]);
 
     });

@@ -15,31 +15,46 @@
 <div class="row">
     <div class="col-xl-12">
             <div class="breadcrumb-holder">
-                    <h1 class="main-title float-left">Dashboard {{ Session('rol') }}</h1>
+                    <h1 class="main-title float-left">Notes {{ Session('rol') }}</h1>
                     <ol class="breadcrumb float-right">
                         <li class="breadcrumb-item">Home</li>
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item active">Notes</li>
                     </ol>
                     <div class="clearfix"></div>
             </div>
     </div>
 </div>
                         <!-- end row -->
-<div class="row">
-        
-        <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
-                <div class="card-box noradius noborder bg-default">
-                <a href="agent/notes">
-                        <i class="fa fa-file-text-o float-right text-white"></i>
-                        <h6 class="text-white text-uppercase m-b-20">my Notes</h6>
-                        <h1 class="m-b-20 text-white counter">0</h1>
-                        </a>
-                        
-                </div>
+
+<form action="{{ route('agent.note.store')}}" method="POST">
+<div class="row justify-content-md-center">
+  <h2 >Keep your notes safe</h2>
+  
+        <div class="col-md-12">
+        @csrf
+                <textarea class="form-control offset-md-4 col-md-4" name="comment" id="" cols="" rows=""></textarea>
+        </div>
+        <div class="">
+                <button class="btn btn-success btn-lg" acction="submit">Save</button>
         </div>
 
-   
+        
+        @if(isset($notes))
+        <div class="col-md-12 offset-md-6">
+        
+        <br> <br>
+                @foreach ($notes as $key=>$note)
+                <div class="col-md-4">
+                        <p>Note:->{{ $note->Comment }}</p>
+                </div>
+                @endforeach
+        </div>
+        @endif
+        
 </div>
+</form>
+
+
 
 <!-- end row -->
 
