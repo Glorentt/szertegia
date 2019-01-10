@@ -2,6 +2,8 @@
 
 @section('title', 'Dashboard')
 
+
+
 @section('content')
 <script>
     //script to change active class in submenus

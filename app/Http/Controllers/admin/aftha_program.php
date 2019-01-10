@@ -118,33 +118,25 @@ class aftha_program extends Controller
     }
 
     public function getComments($id){
-        $comments = aftha_quality::select(array('C1','C2','C3','C4','C5','C6','C7','C8','C9','C10','C11','final_comment','phone','audio','Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8','Q9','Q10','Q11'))
+        $comments = aftha_quality::select(array('C1','C2','C3','C4','C5','C6','C7','C8','C9','C10','C11','C12','C13','C14','C15','C16','C17','C18','C19','C20','final_comment','phone','audio','Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8','Q9','Q10','Q11','Q12','Q13','Q14','Q15','Q16','Q17','Q18','Q19','Q20'))
         ->where('id',$id)->get();
         foreach ($comments as $key => $value) {
             echo $value['phone'].'=>';
             echo $value['audio'].'=>';
-            echo $value['C1'].'=>';
-            echo $value['C2'].'=>';
-            echo $value['C3'].'=>';
-            echo $value['C4'].'=>';
-            echo $value['C5'].'=>';
-            echo $value['C6'].'=>';
-            echo $value['C7'].'=>';
-            echo $value['C8'].'=>';
-            echo $value['C9'].'=>';
-            echo $value['C10'].'=>';
-            echo $value['C11'].'=>';
+            
+            $c = 1;
+            do {
+              echo $value['C'.$c].'=>';
+                    $c++;
+            } while ($c <= 20);
             echo $value['final_comment'].'=>';
+    
+    
             $a=1;
             do {
                 echo $value['Q'.$a].'=>';
                     $a++;
-            } while ($a <= 11);
-
-
-
-
-
+            } while ($a <= 20);
         }
     }
     public function getAllScores(){

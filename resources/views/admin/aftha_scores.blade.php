@@ -10,6 +10,8 @@
     });
 
 </script>
+
+
 <div class="row">
     <div class="col-xl-12">
             <div class="breadcrumb-holder">
@@ -85,68 +87,104 @@
                         <p id="c2"></p></label>
                     </div>
                     <div class='form-group col-md-6' >
-                    <label for="Q1" class='text-primary' >1.-Greeting: Must have an immediate, clear greeting with agent and business name: <strong class="text-danger">olsi</strong>
+                    <label for="Q1" class='text-primary' >1.-The call is being recorded in troduction (if Applicable) <strong class="text-danger">olsi</strong>
                     <p id="c3" class="text-secondary">No comments</p></label>
 
                     </div>
                     <div class='form-group col-md-6' >
-                    <label for="Q2" class='text-primary'>2.-Fluently explained the AFTHA Program and Credit Specialist. As well as what they can do for the customers.:
+                    <label for="Q2" class='text-primary'>2.-Did the agent mention his/ her name and company name ?
                     <p id="c4" class="text-secondary">No comments</p></label>
 
                     </div>
                     <div class='form-group col-md-6' >
-                    <label for="Q3" class='text-primary'>3.-Asked all required questions? :
+                    <label for="Q3" class='text-primary'>3.-Agent pro-actively added value throughout call
                     <p id="c5" class="text-secondary">No comments</p></label>
 
                     </div>
                     <div class='form-group col-md-6' >
-                    <label for="Q4" class='text-primary'>4.-Control the call, while answering the customer's (relevant) questions thoroughly.:<p id="c6" class="text-secondary">No comments</p></label>
+                    <label for="Q4" class='text-primary'>4.-Did the agent answer quickly and correctly?(less than 2 seconds):<p id="c6" class="text-secondary">No comments</p></label>
 
                     </div>
                     <div class='form-group col-md-6' >
-                    <label for="Q5" class='text-primary'>5.-Did the agent Actively Listen to Client?:
+                    <label for="Q5" class='text-primary'>5.-The agent took ownership/ control of the call?:
                     <p id="c7" class="text-secondary">No comments</p></label>
 
                     </div>
                     <div class='form-group col-md-6' >
-                    <label for="Q6" class='text-primary'>6.-Was the call transferred?
+                    <label for="Q6" class='text-primary'>6.- Did the agent pitch credit repair correctly/completely before transferring?
                     <p id="c8" class="text-secondary">No comments</p></label>
 
                     </div>
                     <div class='form-group col-md-6' >
-                    <label for="Q7" class='text-primary'>7.-Did the Agent give a description of the client's situation and goals to the credit specialist?
+                    <label for="Q7" class='text-primary'>7.-The agent asked all appropriate questions
                     <p id="c9" class="text-secondary">No comments</p></label>
 
                     </div>
 
 <div class='form-group col-md-6' >
-                    <label for="Q8" class='text-primary'>8.-Did the Agent introduce the company?
+                    <label for="Q8" class='text-primary'>8.-Did the agent disposition correctly?
                     <p id="c10" class="text-secondary">No comments</p></label>
 
                     </div>
 <div class='form-group col-md-6' >
-                    <label for="Q9" class='text-primary'>9.-Did the Agent Rebuttal the client to overcome objections
+                    <label for="Q9" class='text-primary'>9.-Agent avoided long silences during the call/ transfers?
 				including knowing when to rebuttal a callback?
                     <p id="c11" class="text-secondary">No comments</p></label>
 
                     </div>
 
                     <div class='form-group col-md-6' >
-                    <label for="Q10" class='text-primary'>10.-Was the call properly Dispositioned?
+                    <label for="Q10" class='text-primary'>10.-Agent sounded clear, confident ,upbeat and enthusiastic  not distracted throughout the call
                     <p id="c12" class="text-secondary">No comments</p></label>
 
                     </div>
                     <div class='form-group col-md-6' >
-                    <label for="Q11" class='text-primary'>11.-the call is being recording?
-                    <p id="c13" class="text-secondary">No comments</p></label>
-
+                        <label for="Q11" class='text-primary'>11.-The agent offered an appropriate  solution/address cx questions
+                        <p id="c13" class="text-secondary">No comments</p></label>
                     </div>
+                    <div class='form-group col-md-6' >
+                        <label for="Q12" class='text-primary'>12.- Did the agent sound knowledgeable / correct word choice
+                        <p id="c14" class="text-secondary">No comments</p></label>
+                    </div>
+                    <div class='form-group col-md-6' >
+                        <label for="Q13" class='text-primary'>13.- Empathy/rapport was attempted to be built
+                        <p id="c15" class="text-secondary">No comments</p></label>
+                    </div>
+                    <div class='form-group col-md-6' >
+                        <label for="Q14" class='text-primary'>14.- Agent qualified or disqualified the prospect properly
+                        <p id="c16" class="text-secondary">No comments</p></label>
+                    </div>
+                    <div class='form-group col-md-6' >
+                        <label for="Q15" class='text-primary'>15.- Agent did not interrupt or talk over the customer/was not patronizing or sarcastic
+                        <p id="c17" class="text-secondary">No comments</p></label>
+                    </div>
+                    <div class='form-group col-md-6' >
+                        <label for="Q16" class='text-primary'>16.- Agent used effective questioning/probing skills
+                        <p id="c18" class="text-secondary">No comments</p></label>
+                    </div>
+                    <div class='form-group col-md-6' >
+                        <label for="Q17" class='text-primary'>17.- Agent demonstrated active listening
+                        <p id="c19" class="text-secondary">No comments</p></label>
+                    </div>
+                    <div class='form-group col-md-6' >
+                        <label for="Q18" class='text-primary'>18.- Agent displayed a professional,friendly,welcoming manner throughout the call
+                        <p id="c20" class="text-secondary">No comments</p></label>
+                    </div>
+                    <div class='form-group col-md-6' >
+                        <label for="Q19" class='text-primary'>19.-  Correct   transfer and hand off procedure was followed.
+                        <p id="c21" class="text-secondary">No comments</p></label>
+                    </div>
+                    <div class='form-group col-md-6' >
+                        <label for="Q20" class='text-primary'>20.- Agent rebuttaled during call and continued with the script// scheduled call back  correctly
+                        <p id="c22" class="text-secondary">No comments</p></label>
+                    </div>
+                    
 
 
                  </div>
                  <div><div class='form-group col-md-12' >
                     <label for="Qf" class='text-primary'>Final:
-                    <p id="c14" class="text-secondary">No Comments</p></label>
+                    <p id="c23" class="text-secondary">No Comments</p></label>
 
                     </div>
                 </div>

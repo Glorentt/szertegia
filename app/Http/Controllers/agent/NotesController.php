@@ -14,7 +14,7 @@ class NotesController extends Controller
      */
     public function index()
     {
-        //
+        return route('agent.notes');
     }
 
     /**
