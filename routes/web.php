@@ -67,7 +67,8 @@ Route::prefix('admin')->group(function (){
     Route::get('/getcommentsShowslinger/{id}','admin\ShowSlingerController@getComments');
     //Case managers scores
     Route::get('/scoreCase','admin\scoreController@casemanagers_scores')->name('admin.case.score');
-
+    Route::get('/getScoresCase/data.json/all', ['uses' =>'admin\CaseManagerController@getAllScores']);
+    Route::get('/getcommentsCase/{id}','admin\CaseManagerController@getComments');
     });
 });
 
@@ -134,29 +135,29 @@ Route::prefix('admin')->group(function (){
 //     });
 // });
 //
-// Route::prefix('agent')->group(function (){
-//     Route::middleware(['agent'])->group(function(){
-//         Route::get('/', function () {
-//             return view('agent.welcome');
-//         });
-//
-//     //Routes for Scores
-//     Route::get('/scoreAftha','agent\aftha_program@index')->name('agent.aftha.score');
-//     Route::get('/getScores/data.json/all', ['uses' =>'agent\aftha_program@getAllScores']);
-//     Route::get('/scoreAftha/scoreAftha/my/data.json/my', ['uses' =>'agent\aftha_program@getMyScores']);
-//     Route::get('/scoreAftha/my','agent\aftha_program@indexMyScores')->name('agent.aftha.myscore');
-//     Route::get('/scoreAftha/getcomments/{id}','agent\aftha_program@getMyComments');
-//     Route::post('/scoreAftha/my','agent\aftha_program@setAsRead');
-//     Route::get('/getcomments/{id}','agent\aftha_program@getComments');
-//     Route::resource('/showslingers','agent\ShowslingerController')->names([
-//         'index'=>'agent.showslingers.index',
-//         'store'=>'agent.showslingers.store',
-//         'edit'=>'agent.showslingers.edit',
-//         'update'=>'agent.showslingers.update'
-//     ]);
-//
-//     });
-// });
+Route::prefix('agent')->group(function (){
+    Route::middleware(['agent'])->group(function(){
+        Route::get('/', function () {
+            return view('agent.welcome');
+        });
+
+    //Routes for Scores
+    Route::get('/scoreAftha','agent\aftha_program@index')->name('agent.aftha.score');
+    Route::get('/getScores/data.json/all', ['uses' =>'agent\aftha_program@getAllScores']);
+    Route::get('/scoreAftha/scoreAftha/my/data.json/my', ['uses' =>'agent\aftha_program@getMyScores']);
+    Route::get('/scoreAftha/my','agent\aftha_program@indexMyScores')->name('agent.aftha.myscore');
+    Route::get('/scoreAftha/getcomments/{id}','agent\aftha_program@getMyComments');
+    Route::post('/scoreAftha/my','agent\aftha_program@setAsRead');
+    Route::get('/getcomments/{id}','agent\aftha_program@getComments');
+    Route::resource('/showslingers','agent\ShowslingerController')->names([
+        'index'=>'agent.showslingers.index',
+        'store'=>'agent.showslingers.store',
+        'edit'=>'agent.showslingers.edit',
+        'update'=>'agent.showslingers.update'
+    ]);
+
+    });
+});
 
 Route::get('/', function () {
     return view('login');
