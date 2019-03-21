@@ -12,7 +12,7 @@ class aftha_program extends Controller
     }
 
     public function setAsRead(Request $request){
-        var_dump($request);
+        
         $evaluation = aftha_quality::find($request->comment);
         $evaluation->acknowledge = 1;
         if ($evaluation->save()) {

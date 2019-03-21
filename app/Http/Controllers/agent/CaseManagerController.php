@@ -14,6 +14,17 @@ class CaseManagerController extends Controller {
     public function index() {
       return view('agent.scores_case_manager');
     }
+    public function setAsRead(Request $request){
+        
+      $evaluation = Casemanager::find($request->comment);
+      $evaluation->acknowledge = 1;
+      if ($evaluation->save()) {
+          echo "done";
+      }
+      else {
+          echo "error";
+      }
+  }
   
     /**
       * Show the form for creating a new resource.
@@ -266,4 +277,25 @@ class CaseManagerController extends Controller {
         );
       }
     }
+    public function getMyComments($id){
+      $comments = Casemanager::select(array('C1','C2','C3','C4','C5','C6','C7','C8','C9','C10','C11','C12','C13','C14','C15','C16','C17','C18','C19','C20','final_comment','phone','audio','acknowledge','Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8','Q9','Q10','Q11','Q12','Q13','Q14','Q15','Q16','Q17','Q18','Q19','Q20'))
+      ->where('id',$id)->get();
+      foreach ($comments as $key => $value) {
+          echo $value['phone'].'=>';
+          echo $value['audio'].'=>';
+          
+          $c = 1;
+          do {
+            echo $value['C'.$c].'=>';
+                  $c++;
+          } while ($c <= 20);
+          echo $value['final_comment'].'=>';
+
+          $a=1;
+          do {
+              echo $value['Q'.$a].'=>';
+                  $a++;
+          } while ($a <= 20);
+      }
+  }
   }

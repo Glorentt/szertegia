@@ -249,13 +249,13 @@
                         console.log("Result success: ",result);
                         alert("Se ha realizado el POST con éxito"+result);
                         location.reload();
-                        // var table = $('#scoreTable').DataTable( {
-                        //     ajax: "scoreAftha/my/data.json/my"
-                        // } );
-                        //
-                        // setInterval( function () {
-                        //     table.ajax.reload();
-                        // });
+                        var table = $('#scoreTable').DataTable( {
+                            ajax: "scoreAftha/my/data.json/my"
+                        } );
+                        
+                        setInterval( function () {
+                            table.ajax.reload();
+                        });
                     },
                     error: function(result) {
                         console.log("Result error: ",result);

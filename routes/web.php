@@ -197,6 +197,8 @@ Route::prefix('agent')->group(function (){
         Route::get('/scoreCase/scoreCase/my/data.json/my', ['uses' =>'agent\CaseManagerController@getMyScores']);
    
         Route::get('/scoreCase/my','agent\CaseManagerController@indexMyScores')->name('agent.case.myscore');
+        Route::get('/scoreCase/getcomments/{id}','agent\CaseManagerController@getMyComments');
+        Route::post('/scoreCase/my','agent\CaseManagerController@setAsRead');
 
         Route::get('/scoreAftha/my','agent\aftha_program@indexMyScores')->name('agent.aftha.myscore');
         Route::get('/scoreAftha/getcomments/{id}','agent\aftha_program@getMyComments');
