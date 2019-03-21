@@ -59,21 +59,10 @@ class FormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show($id)
     {
-        $request->validate([
-            'form_name' =>'required|max:150',
-        ]);
-        
-        $forms = Form::find($id);
-        $forms->form_name = $request['form_name'];
-        $forms->user_id = $request['user_id'];
-        $forms->updated_at = $request['updated_at'];
-
-        if($forms->save()){
-            return redirect('admin/forms')->with("success","Actualizado correctamente");
-        }
-        return redirect('admin/forms')->with("error","ther was an error");
+        $form = Form::find($id);
+        return view('admin.viewForm', compact('form'));
     }
 
     /**

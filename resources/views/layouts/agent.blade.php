@@ -116,7 +116,9 @@
 						<ul class="list-unstyled">
 							<li><a href="{{route('agent.aftha.score')}} " id="sub_evaluate_aftha" >Aftha</a></li>
 							<li><a href="{{route('agent.aftha.myscore')}} " id="sub_evaluate_aftha" >My Aftha Scores</a></li>
+
 							<li><a href="{{route('agent.case.score')}} " id="sub_evaluate_aftha" >CaseManagers</a></li>
+							<li><a href="{{route('agent.case.myscore')}} " id="sub_evaluate_aftha" >My CaseManager Scores</a></li>
 							<li><a href="{{route('agent.sudzy.score')}} " id="sub_evaluate_aftha" >Sudzy</a></li>
 							<li><a href="{{route('agent.bizwell.score')}} " id="sub_evaluate_aftha" >Bizwell</a></li>
 							<!-- <li><a >Sudzy</a></li> -->

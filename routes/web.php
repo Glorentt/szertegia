@@ -194,6 +194,10 @@ Route::prefix('agent')->group(function (){
         Route::get('/scoreAftha','agent\aftha_program@index')->name('agent.aftha.score');
         Route::get('/getScores/data.json/all', ['uses' =>'agent\aftha_program@getAllScores']);
         Route::get('/scoreAftha/scoreAftha/my/data.json/my', ['uses' =>'agent\aftha_program@getMyScores']);
+        Route::get('/scoreCase/scoreCase/my/data.json/my', ['uses' =>'agent\CaseManagerController@getMyScores']);
+   
+        Route::get('/scoreCase/my','agent\CaseManagerController@indexMyScores')->name('agent.case.myscore');
+
         Route::get('/scoreAftha/my','agent\aftha_program@indexMyScores')->name('agent.aftha.myscore');
         Route::get('/scoreAftha/getcomments/{id}','agent\aftha_program@getMyComments');
         Route::post('/scoreAftha/my','agent\aftha_program@setAsRead');

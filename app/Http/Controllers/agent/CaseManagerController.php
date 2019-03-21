@@ -131,7 +131,9 @@ class CaseManagerController extends Controller {
         return redirect('agent/casemanager')->withInput($request->only('C1','C2','C3','C4','C5','C6','C7','C8','C9','C10','C11','C12','finalComment'));
       }
     }
-
+    public function indexMyScores(){
+      return view('agent.myCase_scores');
+    }
     public function show($id) {
       //
     }
@@ -196,6 +198,46 @@ class CaseManagerController extends Controller {
       // Set dates on session
       return json_encode($data, JSON_PRETTY_PRINT);
     }
+    public function getMyScores(Request $request){
+      $idUser = $request->session()->get('id');
+      $this->user = Casemanager::select(
+        array('casemanagers.id as DT_RowId','users_table.name as name','quality_table.name as qaname','casemanagers.score as score',
+                      'casemanagers.audio as audio','casemanagers.created_at as date' ,'casemanagers.phone as phone', 'casemanagers.acknowledge as acknowledge')
+      )
+      ->leftJoin('users as users_table','users_table.id','=','casemanagers.user_id')
+      ->leftJoin('users as quality_table','quality_table.id','=','casemanagers.QA_id')
+      ->where('users_table.id',$idUser)
+      ->orderBy('casemanagers.created_at','desc')
+      ->take(800)
+      ->get();
+                  
+      $users = $this->user->toArray();
+      $data = array();
+
+      foreach ($users as $key => $user){
+          // echo $ids[0]['name'];
+          // $users[$key]['sup']= $ids[0]['name'];
+          $users[$key]['DT_RowAttr'] = array(
+              'title' =>  'Manage score of: '.$user['name'],
+              'data-toggle'  => "popover",
+              'data-trigger' => "focus",
+              'data-comment' => $user['DT_RowId'],
+              'data-content'	=>	"<div>
+                                      <a class='btn btn-secondary btn-block' href='javascript:showComments(".$user['DT_RowId'].")'>View comments</a>
+                                  </div>"
+          );
+      }
+      
+      $data['data'] = $users;
+      //  <form style='margin-top: 5px;' action='".url("/events/deleteInscription/".$user['DT_RowId'])."' method='post'>
+      //      ".csrf_field().method_field('DELETE')."
+      //      <a href='".url("/events/deleteInscription/".$user['DT_RowId'])."' class='btn btn-danger btn-block'><span class='glyphicon glyphicon-ban-circle pull-left'>
+      //          </span>Delete inscription</a>
+      //  </form>
+      //  Set dates on session
+      
+      return json_encode($data, JSON_PRETTY_PRINT);
+  }
   
     public function getComments($id){
       $comments = Casemanager::select(array('C1','C2','C3','C4','C5','C6','C7','C8','C9','C10','C11','C12','C13','C14','C15','C16','C17','C18','C19','C20','final_comment','phone','audio','Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8','Q9','Q10','Q11','Q12','Q13','Q14','Q15','Q16','Q17','Q18','Q19','Q20'))
