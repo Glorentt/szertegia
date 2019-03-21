@@ -3,6 +3,9 @@
 @section('title', 'All Scores')
 
 @section('content')
+<head>
+    <meta name="_token" content="{!! csrf_token() !!}"/>
+</head>
 <script>
     //script to change active class in submenus
     $(document).ready(function(){
@@ -13,7 +16,7 @@
 <div class="row">
     <div class="col-xl-12">
             <div class="breadcrumb-holder">
-                    <h1 class="main-title float-left"> <a href="{{route('admin.aftha.score')}} "> Scores</a></h1>
+                    <h1 class="main-title float-left"> <a href="{{route('admin.aftha.score')}} "> Scores Aftha</a></h1>
                     <ol class="breadcrumb float-right">
                         <li class="breadcrumb-item">Home</li>
                         <li class="breadcrumb-item active">Scores</li>
@@ -47,8 +50,7 @@
                                 <th>Phone</th>
                                 <th>QA</th>
                                 <th>date</th>
-
-
+                                <!-- <th>Aknowledge</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -155,7 +157,8 @@
              </div>
              <div class="modal-footer">
                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
+                 <button type="button" class="btn btn-success" data-dismiss="modal" id="acknowledge" >Aknowledge</button>
+                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
              </div>
          </div>
      </div>
@@ -164,41 +167,80 @@
 
 <script>
 function showComments(val) {
+    console.log("VAL: ",val);
     $.ajax({url: "getcomments/"+val, success: function(result){
         var arraycomments = result.split('=>');
-        console.log(arraycomments);
+        console.log("#arraycomments: ",arraycomments);
         var length = arraycomments.length-1;
-
         for (let i = 0; i < arraycomments.length; i++) {
             var j = i+1;
             $('#c'+j).html(arraycomments[i]);
 
+            $('#acknowledge').val(val);
         }
 
         $("#modelComments").modal();
     }});
-    // $("#modelComments").modal();
-    // console.log(val);
-
 }
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $("#acknowledge").click(function(e) {
+            console.log("EEEEE: ",e);
+            e.preventDefault();
+            $.ajax({
+                type: "POST", 
+                url: "my",
+                data: {
+                    comment: $(this).attr('value') // < note use of 'this' here
+                }, 
+                success: function(result) {
+                    alert("Se ha realizado el POST con éxito");
+                    location.reload();
+                    // var table = $('#scoreTable').DataTable( {
+                    //     ajax: "scoreAftha/my/data.json/my"
+                    // } );
+                    //
+                    // setInterval( function () {
+                    //     table.ajax.reload();
+                    // });
+                },
+                error: function(result) {
+                    console.log("Result error: ",result);
+                    alert(result);
+                }
+            });
+        });
+    });
 </script>
 <script>
 $(document).ready(function() {
-var table = $('#scoreTable').DataTable( {
-
-
+    var table = $('#scoreTable').DataTable({
         dom: 'Bfrtip',
+        buttons: ['pageLength'],
+        lengthMenu: [
+            [ 10, 25, 50, -1 ],
+            [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+        ],
+        "ajax": {
+            "url": "getScores/data.json/all"
+        },
         "processing": true,
         "columns": [
             { "data": "name" },
             { "data": "score" },
-
             { "data": "audio" },
             { "data": "phone" },
             { "data": "qaname" },
             { "data": "date" }
-
+            // ,{ "data": "acknowledge" }
         ],
         "order": [[ 4, "desc" ]],
 
@@ -220,69 +262,61 @@ var table = $('#scoreTable').DataTable( {
             });
             $('.navbar-primary').css("height",$(document).height()+"px");
         },
-    buttons: ['pageLength'],
-    lengthMenu: [
-            [ 10, 25, 50, -1 ],
-            [ '10 rows', '25 rows', '50 rows', 'Show all' ]
-        ],
-        "ajax": {
-            "url": "getScores/data.json/all"
+        
+        rowCallback: function( row, data ) {
+            if ( data["acknowledge"] == "0" ) {
+                $('td', row).css('background-color', 'Orange');
+                // console.log(data);
+            }
         },
+        
+        "footerCallback": function ( row, data, start, end, display ) {
+            var api = this.api(), data;
+            // Remove the formatting to get integer data for summation
+            var intVal = function ( i ) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                        i : 0;
+            };
 
-"footerCallback": function ( row, data, start, end, display ) {
-   var api = this.api(), data;
+            // Total over all pages
+            total = api
+                .column( 1 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
 
-   // Remove the formatting to get integer data for summation
-   var intVal = function ( i ) {
-       return typeof i === 'string' ?
-           i.replace(/[\$,]/g, '')*1 :
-           typeof i === 'number' ?
-               i : 0;
-   };
+            // Total over this page
+            pageTotal = api
+                .column( 1, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
 
-   // Total over all pages
-   total = api
-       .column( 1 )
-       .data()
-       .reduce( function (a, b) {
-           return intVal(a) + intVal(b);
-       }, 0 );
+            // Update footer
+            $( api.column( 1 ).footer() ).html(
+                '$'+pageTotal +' ( $'+ total +' total)'
+            );
+        }
+    });
+    // setInterval( function () {
+    //     table.ajax.url( 'admin/getAllUsers').load();
+    // }, 300000 );
 
-   // Total over this page
-   pageTotal = api
-       .column( 1, { page: 'current'} )
-       .data()
-       .reduce( function (a, b) {
-           return intVal(a) + intVal(b);
-       }, 0 );
-
-   // Update footer
-   $( api.column( 1 ).footer() ).html(
-       '$'+pageTotal +' ( $'+ total +' total)'
-   );
-}
-
-} );
-// setInterval( function () {
-
-//     table.ajax.url( 'admin/getAllUsers').load();
-// }, 300000 );
-
-
-$(':not(#sorthis)').click(function() {
-    $('[data-toggle="popover"]').popover("hide");
-    $('[data-toggle="popover"]').removeClass('success');
+    $(':not(#sorthis)').click(function() {
+        $('[data-toggle="popover"]').popover("hide");
+        $('[data-toggle="popover"]').removeClass('success');
+    });
+    // Setup - add a text input to each footer cell
+    // Apply the search
+    // $('#sorthis tbody').on( 'click', 'button', function () {
+    //     var data = table.row( $(this).parents('tr') ).data();
+    //     alert( data[0] +"'s salary is: "+ data[ 2 ] );
+    // } );
 });
-// Setup - add a text input to each footer cell
-
-// Apply the search
-
-// $('#sorthis tbody').on( 'click', 'button', function () {
-//     var data = table.row( $(this).parents('tr') ).data();
-//     alert( data[0] +"'s salary is: "+ data[ 2 ] );
-// } );
-
-} );
 
 </script>
 <!-- <script src="{{asset('assets/js/afthaProgram/tableAftha.js') }} "></script> -->

@@ -59,18 +59,7 @@ function score(params) {
     if (val14 =='') {
         val14 = 0;
     }
-    if (val15 =='') {
-        val15 = 0;
-    }
-    if (val16 =='') {
-        val16 = 0;
-    }
-    if (val17 =='') {
-        val17 = 0;
-    }
-    if (val18 =='') {
-        val18 = 0;
-    }
+
 
     val1 = parseInt(val1);
     val2 = parseInt(val2);
@@ -86,11 +75,8 @@ function score(params) {
     val12 = parseInt(val12);
     val13 = parseInt(val13);
     val14 = parseInt(val14);
-    val15 = parseInt(val15);
-    val16 = parseInt(val16);
-    val17 = parseInt(val17);
-    val18 = parseInt(val18);
-    var tmpScore = ((val1+val2+val3+val4+val5+val6+val7+val8+val9+val10+val11+val12+val13+val14+val15+val16+val17+val18)/18)*100;
+
+    var tmpScore = ((val1+val2+val3+val4+val5+val6+val7+val8+val9+val10+val11+val12+val13+val14)/14)*100;
     var score = tmpScore.toFixed(2);
     
     $('#finalScore').val(score);

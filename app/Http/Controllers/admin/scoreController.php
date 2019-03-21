@@ -16,5 +16,10 @@ class scoreController extends Controller
     Public function casemanagers_scores(){
         return view('admin.scores_case_manager');
     }
-    
+    Public function forex_scores(){
+        return view('admin.scores_forex');
+    }
+    Public function homeowners_scores(){
+        return view('admin.scores_homeowners');
+    }
 }

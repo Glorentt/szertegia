@@ -15,34 +15,76 @@ Route::get('time','agent\timeController@show_time');
 Route::get('paysheet','agent\timeController@paysheet');
 Route::prefix('admin')->group(function (){
     Route::middleware(['admin'])->group(function(){
-    //default route loged as admin
+        //default route loged as admin
         Route::get('/', "admin\startController@index");
-    //evaluations of programs
+        //evaluations of programs
         Route::get('/qa-aftha-form','admin\aftha_program@showForm')->name('admin.aftha.form');
         Route::post('/qa-aftha-form','admin\aftha_program@store')->name('aftha.form.store');
-    //handle users
-
+        //homeowners call programing
+        Route::get('/qa-homeowners-form','admin\homeowners_program@showForm')->name('admin.homeowners.form');
+        Route::post('/qa-homeowners-form','admin\homeowners_program@store')->name('homeowners.form.store');
+        //forex call programing
+        Route::get('/qa-forex-form','admin\forex_program@showForm')->name('admin.forex.form');
+        Route::post('/qa-forex-form','admin\forex_program@store')->name('forex.form.store');
+        //handle users
         Route::post('users/password','admin\UserController@change_password')->name('admin.resetPassword');
-        Route::get('users/password', function(){
-          echo "string";
-        })->name('admin.resetPasswordview');
+        Route::get('users/password', function(){ echo "string"; })->name('admin.resetPasswordview');
+        Route::GET('/answers/{id}/edit','admin\AnswerController@edit')->name('admin.answers.edit');
+        Route::GET('/answers/{id}','admin\AnswerController@show')->name('admin.answers.show');
+        Route::DELETE('/answers/{id}','admin\AnswerController@destroy')->name('admin.answers.destroy');
+        Route::resource('/answers','admin\AnswerController')->names([
+            'index'=>'admin.answers.index',
+            'store'=>'admin.answers.store',
+            // 'edit'=>'admin.answers.edit',
+            // 'update'=>'admin.answers.update',
+            'destroy'=>'admin.answers.destroy',
+        ]);
+        Route::DELETE('/questions/{id}','admin\QuizController@destroy')->name('admin.questions.destroy');
+        Route::resource('/questions','admin\QuizController')->names([
+            'index'=>'admin.questions.index',
+            'store'=>'admin.questions.store',
+            'edit'=>'admin.questions.edit',
+            'update'=>'admin.questions.update',
+            'destroy'=>'admin.questions.destroy',
+        ]);
+        Route::DELETE('/forms/{id}','admin\FormController@destroy')->name('admin.forms.destroy');
+        Route::resource('/forms','admin\FormController')->names([
+            'index'=>'admin.forms.index',
+            'store'=>'admin.forms.store',
+            'edit'=>'admin.forms.edit',
+            'update'=>'admin.forms.update',
+            'destroy'=>'admin.forms.destroy',
+        ]);
         Route::resource('/users','admin\UserController')->names([
             'index'=>'admin.users.index',
             'store'=>'admin.users.store',
             'edit'=>'admin.users.edit',
             'update'=>'admin.users.update'
         ]);
-        Route::resource('/showslingers','admin\ShowSlingerController')->names([
+        Route::resource('/bizwell','admin\ShowSlingerController')->names([
             'index'=>'admin.showslingers.index',
-            'create'=>'admin.showslingers.store',
+            'store'=>'admin.showslingers.store',
             'edit'=>'admin.showslingers.edit',
             'update'=>'admin.showslingers.update'
         ]);
+       
         Route::resource('/casemanager','admin\CaseManagerController')->names([
             'index'=>'admin.case_manager.index',
             'store'=>'admin.case_manager.store',
             'edit'=>'admin.case_manager.edit',
             'update'=>'admin.case_manager.update'
+        ]);
+        Route::resource('/forex','admin\ForexController')->names([
+            'index'=>'admin.forex.index',
+            'store'=>'admin.forex.store',
+            'edit'=>'admin.forex.edit',
+            'update'=>'admin.forex.update'
+        ]);
+        Route::resource('/homeowners','admin\HomeownersController')->names([
+            'index'=>'admin.homeowners.index',
+            'store'=>'admin.homeowners.store',
+            'edit'=>'admin.homeowners.edit',
+            'update'=>'admin.homeowners.update'
         ]);
         Route::get('getAllUsers/data.json/all', ['uses' =>'admin\UserController@getAllUsers']);
         // Route::get('/getAllUsers','admin\UserController@getAllUsers');
@@ -50,25 +92,32 @@ Route::prefix('admin')->group(function (){
             ->where(['name' => '[a-zA-Z]+']);
         Route::get('/liveSearchSupervisors/{name}','admin\UserController@liveSearchSupervisors')
             ->where(['name' => '[a-zA-Z]+']);
-     //Register users
+        //Register users
         Route::get('/register-users','loginController@showRegistrationForm')->name('show.users.form');
         Route::post('/register-users','loginController@register')->name('users.submit');
-    //end Register users
+        //end Register users
 
-
-    //Routes for Scores
-    Route::get('/scoreAftha','admin\scoreController@index')->name('admin.aftha.score');
-    
-    Route::DELETE('/scoreAftha/{id}','admin\aftha_program@destroy')->name('admin.aftha.score.delete');
-    Route::get('/scoreShowslinger','admin\scoreController@showslinger_scores')->name('admin.showslinger.score');
-    Route::get('/getScores/data.json/all', ['uses' =>'admin\aftha_program@getAllScores']);
-    Route::get('/getScoresShowslinger/data.json/all', ['uses' =>'admin\ShowSlingerController@getAllScores']);
-    Route::get('/getcomments/{id}','admin\aftha_program@getComments');
-    Route::get('/getcommentsShowslinger/{id}','admin\ShowSlingerController@getComments');
-    //Case managers scores
-    Route::get('/scoreCase','admin\scoreController@casemanagers_scores')->name('admin.case.score');
-    Route::get('/getScoresCase/data.json/all', ['uses' =>'admin\CaseManagerController@getAllScores']);
-    Route::get('/getcommentsCase/{id}','admin\CaseManagerController@getComments');
+        //Routes Aftha for Scores
+        Route::get('/scoreAftha','admin\scoreController@index')->name('admin.aftha.score');
+        Route::get('/getcomments/{id}','admin\aftha_program@getComments');
+        Route::get('/getScores/data.json/all', ['uses' =>'admin\aftha_program@getAllScores']);
+        Route::DELETE('/scoreAftha/{id}','admin\aftha_program@destroy')->name('admin.aftha.score.delete');
+        //Bizzwell scores
+        Route::get('/getScoresShowslinger/data.json/all', ['uses' =>'admin\ShowSlingerController@getAllScores']);
+        Route::get('/getcommentsShowslinger/{id}','admin\ShowSlingerController@getComments');
+        Route::get('/scoreBizwell','admin\scoreController@showslinger_scores')->name('admin.showslinger.score');
+        //Case managers scores
+        Route::get('/scoreCase','admin\scoreController@casemanagers_scores')->name('admin.case.score');
+        Route::get('/getScoresCase/data.json/all', ['uses' =>'admin\CaseManagerController@getAllScores']);
+        Route::get('/getcommentsCase/{id}','admin\CaseManagerController@getComments');
+        //Forex scores
+        Route::get('/scoreForex','admin\scoreController@forex_scores')->name('admin.forex.score');
+        Route::get('/getScoresForex/data.json/all', ['uses' =>'admin\ForexController@getAllScores']);
+        Route::get('/getcommentsForex/{id}','admin\ForexController@getComments');
+        //Homeowners scores
+        Route::get('/scoreHomeowners','admin\scoreController@homeowners_scores')->name('admin.homeowners.score');
+        Route::get('/getScoresHomeowners/data.json/all', ['uses' =>'admin\HomeownersController@getAllScores']);
+        Route::get('/getcommentsHomeowners/{id}','admin\HomeownersController@getComments');
     });
 });
 
@@ -79,8 +128,8 @@ Route::prefix('admin')->group(function (){
 //             return view('qa.welcome');
 //         });
 //     //evaluations of programs
-//         Route::get('/qa-aftha-form','qa\aftha_program@showForm')->name('qa.aftha.form');
-//         Route::post('/qa-aftha-form','qa\aftha_program@store')->name('qa.form.store');
+//         Route::get('/qa-af tha-form','qa\aftha_program@showForm')->name('qa.af tha.form');
+//         Route::post('/qa-af tha-form','qa\aftha_program@store')->name('qa.form.store');
 //     //handle users
 //         Route::resource('/users','qa\UserController')->names([
 //             'index'=>'qa.users.index',
@@ -98,7 +147,7 @@ Route::prefix('admin')->group(function (){
 //
 //
 //     //Routes for Scores
-//     Route::get('/scoreAftha','qa\scoreController@index')->name('qa.aftha.score');
+//     Route::get('/score Aftha','qa\scoreController@index')->name('qa.af tha.score');
 //     Route::get('/getScores/data.json/all', ['uses' =>'qa\aftha_program@getAllScores']);
 //
 //     });
@@ -110,8 +159,8 @@ Route::prefix('admin')->group(function (){
 //             return view('supervisor.welcome');
 //         });
 //     //evaluations of programs
-//         Route::get('/supervisor-aftha-form','supervisor\aftha_program@showForm')->name('supervisor.aftha.form');
-//         Route::post('/supervisor-aftha-form','supervisor\aftha_program@store')->name('supervisor.form.store');
+//         Route::get('/supervisor-af tha-form','supervisor\aftha_program@showForm')->name('supervisor.af tha.form');
+//         Route::post('/supervisor-af tha-form','supervisor\aftha_program@store')->name('supervisor.form.store');
 //     //handle users
 //         Route::resource('/users','supervisor\UserController')->names([
 //             'index'=>'supervisor.users.index',
@@ -129,7 +178,7 @@ Route::prefix('admin')->group(function (){
 
 
 //     //Routes for Scores
-//     Route::get('/scoreAftha','supervisor\scoreController@index')->name('supervisor.aftha.score');
+//     Route::get('/score Aftha','supervisor\scoreController@index')->name('supervisor.af tha.score');
 //     Route::get('/getScores/data.json/all', ['uses' =>'supervisor\aftha_program@getAllScores']);
 
 //     });
@@ -141,25 +190,51 @@ Route::prefix('agent')->group(function (){
             return view('agent.welcome');
         });
 
-    //Routes for Scores
-    Route::get('/scoreAftha','agent\aftha_program@index')->name('agent.aftha.score');
-    Route::get('/getScores/data.json/all', ['uses' =>'agent\aftha_program@getAllScores']);
-    Route::get('/scoreAftha/scoreAftha/my/data.json/my', ['uses' =>'agent\aftha_program@getMyScores']);
-    Route::get('/scoreAftha/my','agent\aftha_program@indexMyScores')->name('agent.aftha.myscore');
-    Route::get('/scoreAftha/getcomments/{id}','agent\aftha_program@getMyComments');
-    Route::post('/scoreAftha/my','agent\aftha_program@setAsRead');
-    Route::get('/getcomments/{id}','agent\aftha_program@getComments');
-    Route::resource('/showslingers','agent\ShowslingerController')->names([
-        'index'=>'agent.showslingers.index',
-        'store'=>'agent.showslingers.store',
-        'edit'=>'agent.showslingers.edit',
-        'update'=>'agent.showslingers.update'
-    ]);
-    Route::resource('/notes','agent\NotesController')->names([
-        'index'=>'agent.notes',
-        'store'=>'agent.note.store'
-    ]);
+        //Routes Aftha for Scores
+        Route::get('/scoreAftha','agent\aftha_program@index')->name('agent.aftha.score');
+        Route::get('/getScores/data.json/all', ['uses' =>'agent\aftha_program@getAllScores']);
+        Route::get('/scoreAftha/scoreAftha/my/data.json/my', ['uses' =>'agent\aftha_program@getMyScores']);
+        Route::get('/scoreAftha/my','agent\aftha_program@indexMyScores')->name('agent.aftha.myscore');
+        Route::get('/scoreAftha/getcomments/{id}','agent\aftha_program@getMyComments');
+        Route::post('/scoreAftha/my','agent\aftha_program@setAsRead');
+        Route::get('/getcomments/{id}','agent\aftha_program@getComments');
 
+        //Case managers for scores
+        Route::get('/scoreCaseAgent','agent\CaseManagerController@index')->name('agent.case.score');
+        Route::get('/getScoresCase/data.json/all', ['uses' =>'agent\CaseManagerController@getAllScores']);
+        Route::get('/getcommentsCase/{id}','agent\CaseManagerController@getComments');
+
+        // Sudzy
+        Route::get('/scoreSudzyAgent','agent\SudzyController@index')->name('agent.sudzy.score');
+        Route::get('/getScoresSudzy/data.json/all', ['uses' =>'agent\SudzyController@getAllScores']);
+        Route::get('/getcommentsSudzy/{id}','agent\SudzyController@getComments');
+        
+        // Bizwell
+        Route::get('/scoreBizwellAgent','agent\BizwellController@index')->name('agent.bizwell.score');
+        Route::get('/getScoresBizwell/data.json/all', ['uses' =>'agent\BizwellController@getAllScores']);
+        Route::get('/getcommentsBizwell/{id}','agent\BizwellController@getComments');
+
+        //Showslingers
+        Route::resource('/showslingers','agent\ShowslingerController')->names([
+            'index'=>'agent.showslingers.index',
+            'store'=>'agent.showslingers.store',
+            'edit'=>'agent.showslingers.edit',
+            'update'=>'agent.showslingers.update'
+        ]);
+
+        //SMS
+        Route::resource('/sms/sudzy','agent\ShowslingerController')->names([
+            'index'=>'agent.showslingers.index',
+            'store'=>'agent.showslingers.store',
+            'edit'=>'agent.showslingers.edit',
+            'update'=>'agent.showslingers.update'
+        ]);
+
+        //Notes
+        Route::resource('/notes','agent\NotesController')->names([
+            'index'=>'agent.notes',
+            'store'=>'agent.note.store'
+        ]);
     });
 });
 

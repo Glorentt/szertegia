@@ -8,7 +8,7 @@ function score(params) {
     sum += c;
   }
   if (isNaN(sum)) {
-    $('#finalScore').val("you need to answer all the form");
+    $('#finalScore').val("you need to answer all the form Case Managers");
   }else{
     var score = sum.toFixed(2);
      $('#finalScore').val(score);

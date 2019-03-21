@@ -139,6 +139,7 @@ class aftha_program extends Controller
             } while ($a <= 20);
         }
     }
+    
     public function getAllScores(){
 
         $this->user = aftha_quality::
@@ -193,6 +194,7 @@ class aftha_program extends Controller
 
 
     }
+
     public function destroy($id){
         $user = aftha_quality::find($id);
         $user->delete();

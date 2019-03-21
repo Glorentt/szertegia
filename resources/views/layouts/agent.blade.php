@@ -7,7 +7,7 @@
 		<title>Szertegia - @yield('title')</title>
 		<meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
 		<meta name="author" content="Pike Web Development - https://www.pikephp.com">
-<meta name="csrf-token" content="{{ csrf_token() }}" />
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="{{ asset('assets/images/miniatura-png.png')}} ">
 
@@ -30,85 +30,69 @@
 <body class="adminbody">
 
 <div id="main">
-
 	<!-- top bar navigation -->
 	<div class="headerbar">
-
 		<!-- LOGO -->
         <div class="headerbar-left">
 			<a href="{{route('inicio')}} " class="logo"><img alt="Logo" src="{{asset('assets/images/logo.png')}}" /> <span>AGENT</span></a>
         </div>
-
         <nav class="navbar-custom">
+			<ul class="list-inline float-right mb-0">
+				<li class="list-inline-item dropdown notif">
+					<a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+						<i class="fa fa-fw fa-question-circle"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
+						<!-- item-->
+						<div class="dropdown-item noti-title">
+							<h5><small>Help</small></h5>
+						</div>
+	                    <!-- item-->
+						<a target="_blank" href="/time" class="dropdown-item notify-item">
+							<p class="notify-details ml-0">
+								<b>time connection aftha</b>
+								<span>(it's reloaded every 30 min)</span>
+							</p>
+						</a>
+                        <!-- item-->
+                        
+						<!-- All-->
+						<a  class="dropdown-item notify-item notify-all">
+							<i class=""></i>
+						</a>
+					</div>
+				</li>
+				<li class="list-inline-item dropdown notif">
+					<a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+						{{Session('email')}}
+					</a>
+					<div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+						<!-- item-->
+						<div class="dropdown-item noti-title">
+							<h5 class="text-overflow"><small>Hello, {{Session('name')}} </small> </h5>
+						</div>
+                              
+						<!-- item-->
+						<!-- <a href="pro-profile.html" class="dropdown-item notify-item">
+							<i class="fa fa-user"></i> <span>Profile</span>
+						</a> -->
 
-                    <ul class="list-inline float-right mb-0">
+						<!-- item-->
+						<a href="{{route('logout')}} " class="dropdown-item notify-item">
+							<i class="fa fa-power-off"></i> <span>Logout</span>
+						</a>
 
-						<li class="list-inline-item dropdown notif">
-                            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <i class="fa fa-fw fa-question-circle"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
-                                <!-- item-->
-                                <div class="dropdown-item noti-title">
-                                    <h5><small>Help</small></h5>
-                                </div>
-
-                                <!-- item-->
-                                <a target="_blank" href="/time" class="dropdown-item notify-item">
-                                    <p class="notify-details ml-0">
-                                        <b>time connection aftha</b>
-                                        <span>(it's reloaded every 30 min)</span>
-                                    </p>
-                                </a>
-
-                                <!-- item-->
-
-
-                                <!-- All-->
-                                <a  class="dropdown-item notify-item notify-all">
-                                    <i class=""></i>
-                                </a>
-
-                            </div>
-                        </li>
-
-
-                        <li class="list-inline-item dropdown notif">
-                            <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-								{{Session('email')}}
-
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                                <!-- item-->
-                                <div class="dropdown-item noti-title">
-                                    <h5 class="text-overflow"><small>Hello, {{Session('name')}} </small> </h5>
-                                </div>
-
-                                <!-- item-->
-                                <!-- <a href="pro-profile.html" class="dropdown-item notify-item">
-                                    <i class="fa fa-user"></i> <span>Profile</span>
-                                </a> -->
-
-                                <!-- item-->
-                                <a href="{{route('logout')}} " class="dropdown-item notify-item">
-                                    <i class="fa fa-power-off"></i> <span>Logout</span>
-                                </a>
-
-								<!-- item-->
-
-                            </div>
-                        </li>
-
-                    </ul>
-
-                    <ul class="list-inline menu-left mb-0">
-                        <li class="float-left">
-                            <button class="button-menu-mobile open-left">
-								<i class="fa fa-fw fa-bars"></i>
-                            </button>
-                        </li>
-                    </ul>
-
+						<!-- item-->
+					</div>
+				</li>
+			</ul>
+			<ul class="list-inline menu-left mb-0">
+				<li class="float-left">
+					<button class="button-menu-mobile open-left">
+						<i class="fa fa-fw fa-bars"></i>
+					</button>
+				</li>
+			</ul>
         </nav>
 
 	</div>
@@ -116,55 +100,46 @@
 
 	<!-- Left Sidebar -->
 	<div class="left main-sidebar">
-
 		<div class="sidebar-inner leftscroll">
-
 			<div id="sidebar-menu">
-
-			<ul>
-
+				<ul>
 					<li class="submenu">
-						<a id="sub_dashboard" href="{{route('inicio')}} "><i class="fa fa-fw fa-bars"></i><span> Dashboard </span> </a>
-                    </li>
-
-
-            </ul>
-
-			<ul>
-			<ion-icon name="contacts"></ion-icon>
-
-
+						<a id="sub_dashboard" href="{{route('inicio')}} "><i class="fa fa-fw fa-bars"></i><span> Dashboard </span></a>
+					</li>
+					<!-- </ul> -->
+					<!-- <ion-icon name="contacts"></ion-icon> -->
 					<li class="submenu">
-                        <a href="#" id="sub_scores" ><i class="fa fa-fw fa-calendar-check-o"></i> <span> Scores </span> <span class="active menu-arrow"></span></a>
-                            <ul class="list-unstyled">
+						<a href="#" id="sub_scores" >
+							<i class="fa fa-fw fa-calendar-check-o"></i>
+							<span> Scores </span> <span class="active menu-arrow"></span>
+						</a>
+						<ul class="list-unstyled">
+							<li><a href="{{route('agent.aftha.score')}} " id="sub_evaluate_aftha" >Aftha</a></li>
+							<li><a href="{{route('agent.aftha.myscore')}} " id="sub_evaluate_aftha" >My Aftha Scores</a></li>
+							<li><a href="{{route('agent.case.score')}} " id="sub_evaluate_aftha" >CaseManagers</a></li>
+							<li><a href="{{route('agent.sudzy.score')}} " id="sub_evaluate_aftha" >Sudzy</a></li>
+							<li><a href="{{route('agent.bizwell.score')}} " id="sub_evaluate_aftha" >Bizwell</a></li>
+							<!-- <li><a >Sudzy</a></li> -->
+							<!-- <li><a >Bizwell</a></li> -->
+							<!-- <li><a href="{{route('agent.aftha.score')}} "  id="sub_evaluate_aftha" >All Campaigns</a></li> -->
+							<!-- <li><a href="{{route('agent.showslingers.index')}} " id="sub_evaluate_aftha" >ShowSlinger</a></li> -->
+						</ul>
+					</li>
+					<!-- <li class="submenu">
+						<a href="#" id="sub_campaigns" ><i class="fa fa-fw fa-calendar-check-o"></i> <span> Campaigns scripts </span> <span class="active menu-arrow"></span></a>
+							<ul class="list-unstyled"> -->
 								<!-- <li><a href="{{route('agent.aftha.score')}} "  id="sub_evaluate_aftha" >All Campaigns</a></li> -->
-								<li><a href="{{route('agent.aftha.score')}} " id="sub_evaluate_aftha" >Aftha</a></li>
-								<li><a href="{{route('agent.aftha.myscore')}} " id="sub_evaluate_aftha" >My Aftha Scores</a></li>
-								<li><a href="{{route('agent.showslingers.index')}} " id="sub_evaluate_aftha" >ShowSlinger</a></li>
+								<!-- <li><a href="{{route('agent.showslingers.index')}} " id="sub_evaluate_aftha" >Show Slinger</a></li>
 
-						    </ul>
-                    </li>
-					<li class="submenu">
-                        <a href="#" id="sub_campaigns" ><i class="fa fa-fw fa-calendar-check-o"></i> <span> Campaigns scripts </span> <span class="active menu-arrow"></span></a>
-                            <ul class="list-unstyled">
-								<!-- <li><a href="{{route('agent.aftha.score')}} "  id="sub_evaluate_aftha" >All Campaigns</a></li> -->
-								<li><a href="{{route('agent.showslingers.index')}} " id="sub_evaluate_aftha" >Show Slinger</a></li>
-
-						    </ul>
-                    </li>
-            </ul>
-
+							</ul>
+					</li> -->
+            	</ul>
             <div class="clearfix"></div>
-
-			</div>
-
-			<div class="clearfix"></div>
-
 		</div>
-
+		<div class="clearfix"></div>
 	</div>
-	<!-- End Sidebar -->
-
+</div>
+<!-- End Sidebar -->
 
     <div class="content-page">
 

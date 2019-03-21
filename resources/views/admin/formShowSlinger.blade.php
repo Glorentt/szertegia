@@ -13,10 +13,10 @@
 <div class="row">
     <div class="col-xl-12">
         <div class="breadcrumb-holder">
-            <h1 class="main-title float-left">ShowSlingerform quality</h1>
+            <h1 class="main-title float-left">Bizwell quality</h1>
             <ol class="breadcrumb float-right">
                 <li class="breadcrumb-item">Home</li>
-                <li class="breadcrumb-item active">Show</li>
+                <li class="breadcrumb-item active">Bizwell</li>
             </ol>
             <div class="clearfix"></div>
         </div>
@@ -28,13 +28,13 @@
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
         <div class="card mb-3">
             <div class="card-header">
-                <h3><i class="fa fa-check-square-o"></i> Showslinger Quality evaluation</h3>
+                <h3><i class="fa fa-check-square-o"></i> Bizwell Quality evaluation</h3>
                 The evaluation of the aftha program must be visualized by the evaluated agent
             </div>
 
             <div class="card-body">
 
-                <form class="was-validated" method="POST" action="showslingers">
+                <form class="was-validated" method="POST" action="{{route('admin.showslingers.store')}}">
                     <div class="form-group">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <label for="">Agent to evaluate</label>
@@ -57,7 +57,7 @@
                         <small id="helpId" class="form-text text-muted">type a phone number</small>
                     </div>
                     <div class="form-group">
-                        <label for="Q1">1.- <strong>Did the agent mention the company name with GM?</strong>
+                        <label for="Q1">1.- <strong>Did the agent mention the company?</strong>
                         </label>
                         <select class="custom-select" name="Q1" id="Q1" onchange="score()" required>
                             <option value="">Choose one option</option>
@@ -133,7 +133,7 @@
 
                     </div>
                     <div class="form-group">
-                        <label for="Q6">6.- <strong>The agent sound confident /focused?</strong>.
+                        <label for="Q6">6.- <strong>The agent sound confident /focused/ownership on call?.</strong>.
                         </label>
                         <select class="custom-select" name="Q6" id="Q6" onchange="score()" required>
                             <option value="">Choose one option</option>
@@ -147,7 +147,7 @@
                         <small id="helpId" class="form-text text-muted">write a short comment about it</small>
 
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="Q7">7.- <strong>The agent took ownership of the call</strong>.
                         </label>
                         <select class="custom-select" name="Q7" id="Q7" onchange="score()" required>
@@ -161,11 +161,26 @@
                             aria-describedby="helpId" placeholder="Some comment about this question?">
                         <small id="helpId" class="form-text text-muted">write a short comment about it</small>
 
-                    </div>
+                    </div> -->
 
                     <div class="form-group">
+                        <label for="Q7">7.-
+                            <strong>Did the agent disposition correctly in vicidia?</strong>
+                        </label>
+                        <select class="custom-select" name="Q7" id="Q7" onchange="score()" required>
+                            <option value="">Choose one option</option>
+                            <option value="1">pass</option>
+                            <option value="0">fail</option>
+                        </select>
+
+                        <input type="text" class="form-control" value="{{ old('C7') }}" name="C7" id="C7"
+                            aria-describedby="helpId" placeholder="Some comment about this question?">
+                        <small id="helpId" class="form-text text-muted">write a short comment about it</small>
+
+                    </div>
+                    <div class="form-group">
                         <label for="Q8">8.-
-                            <strong>Did the agent disposition correctly?</strong>
+                            <strong>Agent avoided pausing during the call?</strong>
                         </label>
                         <select class="custom-select" name="Q8" id="Q8" onchange="score()" required>
                             <option value="">Choose one option</option>
@@ -180,7 +195,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Q9">9.-
-                            <strong>Agent avoided long silences during the call?</strong>
+                            <strong>Agent properly documented call notes in Asana?</strong>
                         </label>
                         <select class="custom-select" name="Q9" id="Q9" onchange="score()" required>
                             <option value="">Choose one option</option>
@@ -193,9 +208,24 @@
                         <small id="helpId" class="form-text text-muted">write a short comment about it</small>
 
                     </div>
+                    <!-- <div class="form-group">
+                        <label for="Q11">11.-
+                            <strong>The agent offered an appropriate timescale for a solution?</strong>
+                        </label>
+                        <select class="custom-select" name="Q11" id="Q11" onchange="score()" required>
+                            <option value="">Choose one option</option>
+                            <option value="1">pass</option>
+                            <option value="0">fail</option>
+                        </select>
+
+                        <input type="text" class="form-control" value="{{ old('C11') }}" name="C11" id="C11"
+                            aria-describedby="helpId" placeholder="Some comment about this question?">
+                        <small id="helpId" class="form-text text-muted">write a short comment about it</small>
+
+                    </div> -->
                     <div class="form-group">
                         <label for="Q10">10.-
-                            <strong>Agent properly documented call notes with GM?</strong>
+                            <strong> Did the agent rebuttal and close? (min 2 times)</strong>
                         </label>
                         <select class="custom-select" name="Q10" id="Q10" onchange="score()" required>
                             <option value="">Choose one option</option>
@@ -210,7 +240,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Q11">11.-
-                            <strong>The agent offered an appropriate timescale for a solution?</strong>
+                            <strong> Empathy/rapport was attempted to be built?</strong>
                         </label>
                         <select class="custom-select" name="Q11" id="Q11" onchange="score()" required>
                             <option value="">Choose one option</option>
@@ -223,9 +253,39 @@
                         <small id="helpId" class="form-text text-muted">write a short comment about it</small>
 
                     </div>
+                    <!-- <div class="form-group">
+                        <label for="Q14">14.-
+                            <strong>Agent qualified or disqualified the prospect properly?</strong>
+                        </label>
+                        <select class="custom-select" name="Q14" id="Q14" onchange="score()" required>
+                            <option value="">Choose one option</option>
+                            <option value="1">pass</option>
+                            <option value="0">fail</option>
+                        </select>
+
+                        <input type="text" class="form-control" value="{{ old('C14') }}" name="C14" id="C14`"
+                            aria-describedby="helpId" placeholder="Some comment about this question?">
+                        <small id="helpId" class="form-text text-muted">write a short comment about it</small>
+
+                    </div> -->
+                    <!-- <div class="form-group">
+                        <label for="Q15">15.-
+                            <strong>Agent did not interrupt or talk over the customer?</strong>
+                        </label>
+                        <select class="custom-select" name="Q15" id="Q15" onchange="score()" required>
+                            <option value="">Choose one option</option>
+                            <option value="1">pass</option>
+                            <option value="0">fail</option>
+                        </select>
+
+                        <input type="text" class="form-control" value="{{ old('C15') }}" name="C15" id="C15"
+                            aria-describedby="helpId" placeholder="Some comment about this question?">
+                        <small id="helpId" class="form-text text-muted">write a short comment about it</small>
+
+                    </div> -->
                     <div class="form-group">
                         <label for="Q12">12.-
-                            <strong>Did the agent explain and send the videos?</strong>
+                            <strong>Agent used effective questioning/probing skills?</strong>
                         </label>
                         <select class="custom-select" name="Q12" id="Q12" onchange="score()" required>
                             <option value="">Choose one option</option>
@@ -240,7 +300,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Q13">13.-
-                            <strong> Empathy/rapport was attempted to be built?</strong>
+                            <strong>Agent demonstrated active listening?</strong>
                         </label>
                         <select class="custom-select" name="Q13" id="Q13" onchange="score()" required>
                             <option value="">Choose one option</option>
@@ -255,7 +315,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Q14">14.-
-                            <strong>Agent qualified or disqualified the prospect properly?</strong>
+                            <strong> Agent displayed a professional,friendly,welcoming manner throughout the call?</strong>
                         </label>
                         <select class="custom-select" name="Q14" id="Q14" onchange="score()" required>
                             <option value="">Choose one option</option>
@@ -263,67 +323,7 @@
                             <option value="0">fail</option>
                         </select>
 
-                        <input type="text" class="form-control" value="{{ old('C14') }}" name="C14" id="C14`"
-                            aria-describedby="helpId" placeholder="Some comment about this question?">
-                        <small id="helpId" class="form-text text-muted">write a short comment about it</small>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="Q15">15.-
-                            <strong>Agent did not interrupt or talk over the customer?</strong>
-                        </label>
-                        <select class="custom-select" name="Q15" id="Q15" onchange="score()" required>
-                            <option value="">Choose one option</option>
-                            <option value="1">pass</option>
-                            <option value="0">fail</option>
-                        </select>
-
-                        <input type="text" class="form-control" value="{{ old('C15') }}" name="C15" id="C15"
-                            aria-describedby="helpId" placeholder="Some comment about this question?">
-                        <small id="helpId" class="form-text text-muted">write a short comment about it</small>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="Q16">16.-
-                            <strong>Agent used effective questioning/probing skills?</strong>
-                        </label>
-                        <select class="custom-select" name="Q16" id="Q16" onchange="score()" required>
-                            <option value="">Choose one option</option>
-                            <option value="1">pass</option>
-                            <option value="0">fail</option>
-                        </select>
-
-                        <input type="text" class="form-control" value="{{ old('C16') }}" name="C16" id="C16"
-                            aria-describedby="helpId" placeholder="Some comment about this question?">
-                        <small id="helpId" class="form-text text-muted">write a short comment about it</small>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="Q17">17.-
-                            <strong>Agent demonstrated active listening?</strong>
-                        </label>
-                        <select class="custom-select" name="Q17" id="Q17" onchange="score()" required>
-                            <option value="">Choose one option</option>
-                            <option value="1">pass</option>
-                            <option value="0">fail</option>
-                        </select>
-
-                        <input type="text" class="form-control" value="{{ old('C17') }}" name="C17" id="C17"
-                            aria-describedby="helpId" placeholder="Some comment about this question?">
-                        <small id="helpId" class="form-text text-muted">write a short comment about it</small>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="Q18">18.-
-                            <strong>Agent displayed a professional,friendly,welcoming manner throughout the call?</strong>
-                        </label>
-                        <select class="custom-select" name="Q18" id="Q18" onchange="score()" required>
-                            <option value="">Choose one option</option>
-                            <option value="1">pass</option>
-                            <option value="0">fail</option>
-                        </select>
-
-                        <input type="text" class="form-control" value="{{ old('C18') }}" name="C18" id="C18"
+                        <input type="text" class="form-control" value="{{ old('C14') }}" name="C14" id="C14"
                             aria-describedby="helpId" placeholder="Some comment about this question?">
                         <small id="helpId" class="form-text text-muted">write a short comment about it</small>
 

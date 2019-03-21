@@ -5,37 +5,34 @@ use App\Casemanager;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CaseManagerController extends Controller
-{
+class CaseManagerController extends Controller {
   /**
-  * Display a listing of the resource.
-  *
-  * @return \Illuminate\Http\Response
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
   */
-  public function index()
-  {
+  public function index() {
     return view('admin.form_case_manager');
   }
 
   /**
-  * Show the form for creating a new resource.
-  *
-  * @return \Illuminate\Http\Response
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
   */
-  public function create()
-  {
-
+  public function create() {
+    //
   }
 
   /**
-  * Store a newly created resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @return \Illuminate\Http\Response
+    * Store a newly created resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
   */
-  public function store(Request $request)
-  {
+  public function store(Request $request) {
     $aftha = new Casemanager();
+
     $request->validate([
       'Q1'=>'required',
       'Q2'=>'required',
@@ -80,6 +77,7 @@ class CaseManagerController extends Controller
       'finalScore'=>'numeric',
       'finalComment'=>'required',
     ]);
+
     $aftha->Q1 = $request->Q1;
     $aftha->Q2 = $request->Q2;
     $aftha->Q3 = $request->Q3;
@@ -135,125 +133,119 @@ class CaseManagerController extends Controller
   }
 
   /**
-  * Display the specified resource.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
+    * Display the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
   */
-  public function show($id)
-  {
+  public function show($id) {
     //
   }
 
   /**
-  * Show the form for editing the specified resource.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
+    * Show the form for editing the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
   */
-  public function edit($id)
-  {
+  public function edit($id) {
     //
   }
 
   /**
-  * Update the specified resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
+    * Update the specified resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
   */
-  public function update(Request $request, $id)
-  {
+  public function update(Request $request, $id) {
     //
   }
 
   /**
-  * Remove the specified resource from storage.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
+    * Remove the specified resource from storage.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
   */
+  public function destroy($id){
+    //
+  }
+  
   public function getAllScores(){
+    $this->user = Casemanager::select(
+      array('casemanagers.id as DT_RowId','users_table.name as name','quality_table.name as qaname','casemanagers.score as score',
+                    'casemanagers.audio as audio','casemanagers.created_at as date' ,'casemanagers.phone as phone', 'casemanagers.acknowledge as acknowledge')
+    )
+    ->leftJoin('users as users_table','users_table.id','=','casemanagers.user_id')
+    ->leftJoin('users as quality_table','quality_table.id','=','casemanagers.QA_id')
+    ->orderBy('casemanagers.created_at','desc')
+    ->take(800)
+    ->get();
 
-    $this->user = Casemanager::
-    select(array('casemanagers.id as DT_RowId','users_table.name as name','quality_table.name as qaname','casemanagers.score as score',
-                    'casemanagers.audio as audio','casemanagers.created_at as date' ,'casemanagers.phone as phone', 'casemanagers.acknowledge as acknowledge'))
-                    ->leftJoin('users as users_table','users_table.id','=','casemanagers.user_id')
-                    ->leftJoin('users as quality_table','quality_table.id','=','casemanagers.QA_id')
-                    ->orderBy('casemanagers.created_at','desc')
-    ->take(800)->get();
+    $users = $this->user->toArray();
+    $data = array();
+    
+    foreach ($users as $key => $user){
+    // echo $ids[0]['name'];
+    // $users[$key]['sup']= $ids[0]['name'];
 
-                $users = $this->user->toArray();
-
-                $data = array();
-
-                foreach ($users as $key => $user){
-
-                //    echo $ids[0]['name'];
-                    // $users[$key]['sup']= $ids[0]['name'];
-
-                  $users[$key]['DT_RowAttr'] = array(
-                       'title'	=>	'Manage score of: '.$user['name'],
-                      'data-toggle'  => "popover",
-                       'data-trigger' => "focus",
-                            'data-content'	=>	"<div>
-                                                        <a class='btn btn-secondary btn-block' href='javascript:showComments(".$user['DT_RowId'].")'>View comments</a>
-                                    <form style='margin-top: 5px;'
-                                      action='".url("admin/scoreAftha/".$user['DT_RowId'])."'
-                                      method='post'>
-                                        ".csrf_field().
-                                        method_field('DELETE')."
-                                        <button value='submit'
-                                          class='btn btn-danger btn-block'><span class='glyphicon glyphicon-ban-circle pull-left'>
-                                          </span>Delete evaluation</button>
-                                    </form>
-
-                                </div>"
-                  );
-                }
-                $data['data'] = $users;
-            //     <form style='margin-top: 5px;'
-            //     action='".url("/events/deleteInscription/".$user['DT_RowId'])."'
-            //     method='post'>
-            //         ".csrf_field().
-            //         method_field('DELETE')."
-            //         <a href='".url("/events/deleteInscription/".$user['DT_RowId'])."'
-            //             class='btn btn-danger btn-block'><span class='glyphicon glyphicon-ban-circle pull-left'>
-            //             </span>Delete inscription</a>
-            // </form>
-      //Set dates on session
-
-      return json_encode($data, JSON_PRETTY_PRINT);
-
-
-}
-
-  public function destroy($id)
-  {
-    //
+      $users[$key]['DT_RowAttr'] = array(
+        'title'	=>	'Manage score of: '.$user['name'],
+        'data-toggle'  => "popover",
+        'data-trigger' => "focus",
+        'data-content'	=>	"
+          <div>
+            <a class='btn btn-secondary btn-block' href='javascript:showComments(".$user['DT_RowId'].")'>View comments</a>
+            <form style='margin-top: 5px;' action='".url("admin/scoreAftha/".$user['DT_RowId'])."' method='post'>".csrf_field().method_field('DELETE')."
+              <button value='submit' class='btn btn-danger btn-block'>
+                <span class='glyphicon glyphicon-ban-circle pull-left'></span>Delete evaluation
+              </button>
+            </form>
+          </div>"
+      );
+    }
+      
+    $data['data'] = $users;
+    //  <form style='margin-top: 5px;'
+    //  action='".url("/events/deleteInscription/".$user['DT_RowId'])."'
+    //  method='post'>
+    //  ".csrf_field().
+    //  method_field('DELETE')."
+    //  <a href='".url("/events/deleteInscription/".$user['DT_RowId'])."'
+    //  class='btn btn-danger btn-block'><span class='glyphicon glyphicon-ban-circle pull-left'>
+    //  </span>Delete inscription</a>
+    //  </form>
+    // Set dates on session
+    return json_encode($data, JSON_PRETTY_PRINT);
   }
+
   public function getComments($id){
     $comments = Casemanager::select(array('C1','C2','C3','C4','C5','C6','C7','C8','C9','C10','C11','C12','C13','C14','C15','C16','C17','C18','C19','C20','final_comment','phone','audio','Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8','Q9','Q10','Q11','Q12','Q13','Q14','Q15','Q16','Q17','Q18','Q19','Q20'))
     ->where('id',$id)->get();
 
     foreach ($comments as $key => $value) {
-        echo $value['phone'].'=>';
-        echo $value['audio'].'=>';
+      echo $value['phone'].'=>';
+      echo $value['audio'].'=>';
         
-        $c = 1;
-        do {
-          echo $value['C'.$c].'=>';
-                $c++;
-        } while ($c <= 20);
-        echo $value['final_comment'].'=>';
+      $c = 1;
+      do { 
+        echo $value['C'.$c].'=>';
+        $c++;
+      } while (
+        $c <= 20
+      );
 
+      echo $value['final_comment'].'=>';
 
-        $a=1;
-        do {
-            echo $value['Q'.$a].'=>';
-                $a++;
-        } while ($a <= 20);
+      $a=1;
+      do {
+        echo $value['Q'.$a].'=>';
+        $a++;
+      } while (
+        $a <= 20
+      );
     }
-}
+  }
 }

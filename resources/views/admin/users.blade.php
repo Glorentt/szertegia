@@ -103,7 +103,7 @@ function showEdit(id) {
         $("#editsuperName").val(datos[4]);
         $("#editphone").val(datos[5]);
         $("#editrole_id").val(datos[6]);
-        $("#formEdit").attr("action","http://192.168.1.121/admin/users/"+id);
+        $("#formEdit").attr("action","http://tracking.szertegia.dc/admin/users/"+id);
         // $("#formEdit").attr("method","put");
 
 

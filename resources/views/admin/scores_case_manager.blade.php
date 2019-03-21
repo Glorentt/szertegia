@@ -188,8 +188,8 @@
                 </div>
              </div>
              <div class="modal-footer">
-                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-success" data-dismiss="modal" id="acknowledge" >Aknowledge</button> -->
              </div>
          </div>
      </div>
@@ -203,10 +203,16 @@ function showComments(val) {
         console.log(arraycomments);
         var length = arraycomments.length-1;
 
+        // console.log("valor: ",val);
+        // console.log("acknowledge: ",$('#acknowledge').val(val));
+        // console.log("acknowledge: ",$('#acknowledge').val(val));
+
         for (let i = 0; i < arraycomments.length; i++) {
             var j = i+1;
             $('#c'+j).html(arraycomments[i]);
+            // $('#c'+j).html(arraycomments[val]);
 
+            $('#acknowledge').val(val);
         }
 
         $("#modelComments").modal();
@@ -217,6 +223,51 @@ function showComments(val) {
 }
 
 </script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $("#acknowledge").click(function(e) {
+            e.preventDefault();
+            
+            console.log("entra al ajax");
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "my",
+                    data: {
+                        comment: $(this).attr('value') // < note use of 'this' here
+                    }, 
+                    success: function(result) {
+                        console.log("Result success: ",result);
+                        alert("Se ha realizado el POST con éxito"+result);
+                        location.reload();
+                        // var table = $('#scoreTable').DataTable( {
+                        //     ajax: "scoreAftha/my/data.json/my"
+                        // } );
+                        //
+                        // setInterval( function () {
+                        //     table.ajax.reload();
+                        // });
+                    },
+                    error: function(result) {
+                        console.log("Result error: ",result);
+                        alert(result);
+                    }
+                }
+            );
+
+        });
+    });
+</script>
+
+
 <script>
 $(document).ready(function() {
 var table = $('#scoreTable').DataTable( {
@@ -227,7 +278,6 @@ var table = $('#scoreTable').DataTable( {
         "columns": [
             { "data": "name" },
             { "data": "score" },
-
             { "data": "audio" },
             { "data": "phone" },
             { "data": "qaname" },
@@ -251,13 +301,13 @@ var table = $('#scoreTable').DataTable( {
                     console.log(take.popover("show"));
                 }, 300);
 
-            });
+            });   
             $('.navbar-primary').css("height",$(document).height()+"px");
         },
         rowCallback: function( row, data ) {
             if ( data["acknowledge"] == "0" ) {
               $('td', row).css('background-color', 'Orange');
-              console.log(data);
+              // console.log("Se imprime data:",data);
             }
           },
     buttons: ['pageLength'],

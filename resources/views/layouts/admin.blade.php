@@ -30,160 +30,151 @@
 <body class="adminbody">
 
 <div id="main">
-
 	<!-- top bar navigation -->
 	<div class="headerbar">
-
 		<!-- LOGO -->
         <div class="headerbar-left">
 			<a href="{{route('inicio')}} " class="logo"><img alt="Logo" src="{{asset('assets/images/logo.png')}}" /> <span>Admin</span></a>
         </div>
-
         <nav class="navbar-custom">
-
-                    <ul class="list-inline float-right mb-0">
-
-						<li class="list-inline-item dropdown notif">
-                            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <i class="fa fa-fw fa-question-circle"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
-                                <!-- item-->
-                                <div class="dropdown-item noti-title">
-                                    <h5><small>Help and Support</small></h5>
-                                </div>
-
-                                <!-- item-->
-                                <a target="_blank" href="#" class="dropdown-item notify-item">
-                                    <p class="notify-details ml-0">
-                                        <b>Do you have an idea for this?</b>
-                                        <span>Contact Us</span>
-                                    </p>
-                                </a>
-
-                                <!-- item-->
-
-
-                                <!-- All-->
-                                <a  class="dropdown-item notify-item notify-all">
-                                    <i class=""></i>
-                                </a>
-
-                            </div>
-                        </li>
-
-
-                        <li class="list-inline-item dropdown notif">
-                            <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-								{{Session('email')}}
-
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                                <!-- item-->
-                                <div class="dropdown-item noti-title">
-                                    <h5 class="text-overflow"><small>Hello, {{Session('name')}} </small> </h5>
-                                </div>
-
-                                <!-- item-->
-                                <!-- <a href="pro-profile.html" class="dropdown-item notify-item">
-                                    <i class="fa fa-user"></i> <span>Profile</span>
-                                </a> -->
-
-                                <!-- item-->
-                                <a href="{{route('logout')}} " class="dropdown-item notify-item">
-                                    <i class="fa fa-power-off"></i> <span>Logout</span>
-                                </a>
-
-								<!-- item-->
-
-                            </div>
-                        </li>
-
-                    </ul>
-
-                    <ul class="list-inline menu-left mb-0">
-                        <li class="float-left">
-                            <button class="button-menu-mobile open-left">
-								<i class="fa fa-fw fa-bars"></i>
-                            </button>
-                        </li>
-                    </ul>
-
+			<ul class="list-inline float-right mb-0">
+				<li class="list-inline-item dropdown notif">
+					<a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+						<i class="fa fa-fw fa-question-circle"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
+						<!-- item-->
+						<div class="dropdown-item noti-title">
+							<h5><small>Help and Support</small></h5>
+						</div>
+						<!-- item-->
+						<a target="_blank" href="#" class="dropdown-item notify-item">
+							<p class="notify-details ml-0">
+								<b>Do you have an idea for this?</b>
+								<span>Contact Us</span>
+							</p>
+						</a>
+						<!-- item-->
+						<!-- All-->
+						<a  class="dropdown-item notify-item notify-all">
+							<i class=""></i>
+						</a>
+					</div>
+				</li>
+				<li class="list-inline-item dropdown notif">
+					<a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+						{{Session('email')}}
+					</a>
+					<div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+						<!-- item-->
+						<div class="dropdown-item noti-title">
+							<h5 class="text-overflow"><small>Hello, {{Session('name')}} </small> </h5>
+						</div>
+						<!-- item-->
+						<!-- <a href="pro-profile.html" class="dropdown-item notify-item">
+							<i class="fa fa-user"></i> <span>Profile</span>
+						</a> -->
+						<!-- item-->
+						<a href="{{route('logout')}} " class="dropdown-item notify-item">
+							<i class="fa fa-power-off"></i> <span>Logout</span>
+						</a>
+						<!-- item-->
+					</div>
+				</li>
+			</ul>
+			<ul class="list-inline menu-left mb-0">
+				<li class="float-left">
+					<button class="button-menu-mobile open-left">
+						<i class="fa fa-fw fa-bars"></i>
+					</button>
+				</li>
+			</ul>
         </nav>
-
 	</div>
 	<!-- End Navigation -->
 
-
 	<!-- Left Sidebar -->
 	<div class="left main-sidebar">
-
 		<div class="sidebar-inner leftscroll">
-
 			<div id="sidebar-menu">
-
-			<ul>
-
+				<ul>
 					<li class="submenu">
-						<a id="sub_dashboard" href="{{route('inicio')}} "><i class="fa fa-fw fa-bars"></i><span> Dashboard </span> </a>
+						<a id="sub_dashboard" href="{{route('inicio')}} ">
+							<i class="fa fa-fw fa-bars"></i><span>Dashboard</span> 
+						</a>
                     </li>
-
 					<li class="submenu">
-                        <a href="#" id="sub_evaluate" ><i class="fa fa-fw fa-file-text-o"></i> <span> Evaluate </span> <span class="active menu-arrow"></span></a>
-                            <ul class="list-unstyled">
-								<li><a href="{{route('admin.aftha.form')}} " id="sub_evaluate_aftha" >Aftha</a></li>
-								<li><a href="{{route('admin.case_manager.index')}} " id="sub_evaluate_aftha" >Case Manager</a></li>
-								<li><a id="sub_show" href="{{route('admin.showslingers.index')}} ">ShowSlinger</a></li>
-
-                            </ul>
+                        <a href="#" id="sub_evaluate" >
+							<i class="fa fa-fw fa-file-text-o"></i>
+							<span> Evaluate </span><span class="active menu-arrow"></span>
+						</a>
+						<ul class="list-unstyled">
+							<li><a href="{{route('admin.aftha.form')}} " id="sub_evaluate_aftha" >Aftha</a></li>
+							<li><a href="{{route('admin.case_manager.index')}} " id="sub_evaluate_aftha" >Case Manager</a></li>
+							<li><a href="{{route('admin.forex.form')}} " id="sub_evaluate_aftha" >Forex</a></li>
+							<!-- <li><a href="{{route('admin.homeowners.form')}} " id="sub_evaluate_aftha" >Homeowners</a></li> -->
+							<li><a id="sub_show" href="{{route('admin.showslingers.index')}} ">Bizwell</a></li>
+						</ul>
                     </li>
-            </ul>
-			<ul>
-			<ion-icon name="contacts"></ion-icon>
-
-
+            	</ul>
+				<ul>
+					<ion-icon name="contacts"></ion-icon>
 					<li class="submenu">
-                        <a href="#" id="sub_users" ><i class="fa fa-fw fa-user-o"></i> <span> Users </span> <span class="active menu-arrow"></span></a>
-                            <ul class="list-unstyled">
-								<li><a href="{{route('admin.users.index')}} "  id="sub_evaluate_aftha" >All Users</a></li>
-								<li><a href="{{route('admin.users.index')}} " id="sub_evaluate_aftha" >Users log</a></li>
-                                <li><a href="{{route('admin.users.index')}} " id="sub_evaluate_aftha" >Users sales</a></li>
-								<li><a href="{{route('admin.users.index')}} " id="sub_evaluate_aftha" >Users Campaigns</a></li>
-						    </ul>
-                    </li>
-			</ul>
-			<ul>
-			<ion-icon name="contacts"></ion-icon>
-
-
+						<a href="#" id="sub_users" >
+							<i class="fa fa-fw fa-user-o"></i>
+							<span> Users </span><span class="active menu-arrow"></span>
+						</a>
+						<ul class="list-unstyled">
+							<li><a href="{{route('admin.users.index')}} " >All Users</a></li>
+							{{-- <li><a href="{{route('admin.users.index')}} " id="sub_evaluate_aftha" >Users log</a></li>
+							<li><a href="{{route('admin.users.index')}} " id="sub_evaluate_aftha" >Users sales</a></li>
+							<li><a href="{{route('admin.users.index')}} " id="sub_evaluate_aftha" >Users Campaigns</a></li> --}}
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<ion-icon name="contacts"></ion-icon>
 					<li class="submenu">
-                        <a href="#" id="sub_scores" ><i class="fa fa-fw fa-calendar-check-o"></i> <span> Scores </span> <span class="active menu-arrow"></span></a>
-                            <ul class="list-unstyled">
-								<!-- <li><a href="{{route('admin.aftha.score')}} "  id="sub_evaluate_aftha" >All Campaigns</a></li> -->
-								<li><a href="{{route('admin.aftha.score')}} " id="sub_evaluate_aftha" >Aftha</a></li>
-                                <li><a href="{{route('admin.showslinger.score')}} " id="sub_evaluate_aftha" >showslinger</a></li>
-								<li><a href="{{route('admin.case.score')}} " id="sub_evaluate_aftha" >CaseManagers</a></li>
-						    </ul>
-                    </li>
-            </ul>
-
-            <div class="clearfix"></div>
-
+						<a href="#" id="sub_scores" >
+							<i class="fa fa-fw fa-calendar-check-o"></i>
+							<span> Scores </span><span class="active menu-arrow"></span>
+						</a>
+						<ul class="list-unstyled">								
+							<li><a href="{{route('admin.aftha.score')}} " id="sub_evaluate_aftha" >Aftha</a></li>
+							<li><a href="{{route('admin.case.score')}} " id="sub_evaluate_aftha" >CaseManagers</a></li>
+							<li><a href="{{route('admin.forex.score')}} " id="sub_evaluate_aftha" >Forex</a></li>
+							<!-- <li><a href="{{route('admin.aftha.score')}} "  id="sub_evaluate_aftha" >All Campaigns</a></li> -->
+							<!-- <li><a href="{{route('admin.homeowners.score')}} " id="sub_evaluate_aftha" >Homeowners</a></li> -->
+							<li><a href="{{route('admin.showslinger.score')}} " id="sub_evaluate_aftha" >Bizwell</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<ion-icon name="clipboard"></ion-icon>
+					<li class="submenu">
+						<a href="#" id="sub_quiz">
+							<i class="fa fa-clipboard"></i>
+							<span>QA</span><span class="active menu-arrow"></span>
+						</a>
+						<ul class="list-unstyled">
+							<li><a href="{{route('admin.forms.index')}}" id="sub_quiz" >Formularios</a></li>
+							{{-- <li><a href="{{route('admin.questions.index')}}" id="sub_quiz" >Preguntas</a></li> --}}
+							<li><a href="{{route('admin.answers.index')}}" id="sub_quiz" >Respuestas</a></li>
+							{{-- <li><a href="#" id="sub_quiz" >Lista de Campañas</a></li> --}}
+							{{-- <li><a href="#" id="sub_quiz" >Tipo de Respuesta</a></li> --}}
+						</ul>
+					</li>
+				</ul>
+				<div class="clearfix"></div>
 			</div>
-
 			<div class="clearfix"></div>
-
 		</div>
 
 	</div>
 	<!-- End Sidebar -->
-
-
     <div class="content-page">
-
 		<!-- Start content -->
         <div class="content">
-
 			<div class="container-fluid">
 			@if (\Session::has('success'))
 				<div class="alert alert-success">
@@ -206,11 +197,6 @@
             @endforeach
 						@yield('content')
 
-
-
-
-
-
             </div>
 			<!-- END container-fluid -->
 
@@ -219,7 +205,6 @@
 
     </div>
 	<!-- END content-page -->
-
 	<footer class="footer">
 		<span class="text-right">
 		Copyright <a target="_blank" href="#">Szertegia tracking</a>
@@ -228,22 +213,16 @@
 		Powered by <a target="_blank" href="https://www.facebook.com/francisco.nogales.9212"><b>Francisco Nogales</b></a>
 		</span>
 	</footer>
-
 </div>
 <!-- END main -->
-
 <script src="{{asset('assets/js/modernizr.min.js')}}"></script>
-
 <script src="{{asset('assets/js/moment.min.js')}}"></script>
-
 <script src="{{asset('assets/js/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-
 <script src="{{asset('assets/js/detect.js')}}"></script>
 <script src="{{asset('assets/js/fastclick.js')}}"></script>
 <script src="{{asset('assets/js/jquery.blockUI.j')}}s"></script>
 <script src="{{asset('assets/js/jquery.nicescroll.js')}}"></script>
-
 <!-- <script src="{{asset('assets/js/dataTables.buttons.min.js') }} "></script> -->
 <!-- App js -->
 <script src="{{asset('assets/js/pikeadmin.js')}}"></script>
@@ -261,7 +240,6 @@
 
 	@yield('jsUsers')
 
-
 	<!-- <script>
 	// var ctx1 = document.getElementById("lineChart").getContext('2d');
 	var lineChart = new Chart(ctx1, {
@@ -277,7 +255,6 @@
 					backgroundColor: '#EBEFF3',
 					data: [12, 14, 6, 7, 13, 6, 13, 16, 10, 8, 11, 12]
 				}]
-
 		},
 		options: {
 						tooltips: {

@@ -1,18 +1,5 @@
 @extends('layouts.admin')
 
-@section('title', 'QA Aftha')
-@section('content')
-<script>
-    //script to change active class in submenus
-    $(document).ready(function(){
-        $('#sub_evaluate').addClass('active');
-    });
-
-</script>
-
-
-@extends('layouts.admin')
-
 @section('title', 'QA Afta')
 @section('content')
 <script>
@@ -33,39 +20,33 @@
       <div class="clearfix"></div>
     </div>
   </div>
-
-
       <div class="card col-md-12 col-lg-12 col-xl-12">
         <div class="card-header">
           <h3><i class="fa fa-check-square-o"></i> Afta Quality evaluation</h3>
           The evaluation of the aftha program must be visualized by the evaluated agent
         </div>
-
         <div class="card-body ">
           <form class="was-validated row" method="POST" action="{{route('aftha.form.store')}} ">
             <div class="col-md-6 col-lg-6 col-xl-6">
-              <div class="form-group">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <label for="">Agent to evaluate</label>
-
-                <input type="text"
-                class="form-control" list="names" name="nameAgent" id="nameAgent"
-                onkeyup="liveSearch(this.value)"  autocomplete="off" >
-                <input type="hidden"
-                class="form-control"  name="agentID" id="agentID"
-                autocomplete="false" >
-                <datalist id="names"></datalist>
+              <div class="row">
+                <div class="col-10">
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  <label for="">Agent to evaluate</label>
+                  <input type="text" class="form-control" list="names" name="nameAgent" id="nameAgent" onkeyup="liveSearch(this.value)"  autocomplete="off" >
+                  <input type="hidden" class="form-control"  name="agentID" id="agentID" autocomplete="false" >
+                  <datalist id="names"></datalist>
+                </div>
               </div>
               <div class="form-group">
                 <label for="">Record to evaluate</label>
-                <input type="text"
-                class="form-control" name="audio" id="audio" aria-describedby="helpId" placeholder="">
+                <input type="text" class="form-control" name="audio" id="audio" aria-describedby="helpId" 
+                placeholder="">
                 <small id="helpId" class="form-text text-muted">Url of audio</small>
               </div>
               <div class="form-group">
                 <label for="">Phone Number</label>
-                <input type="text"
-                class="form-control" pattern="\d*" maxlength="10" name="phone" id="phone" aria-describedby="helpId" placeholder="">
+                <input type="text" class="form-control" pattern="\d*" maxlength="10" name="phone" id="phone" 
+                aria-describedby="helpId" placeholder="">
                 <small id="helpId" class="form-text text-muted">type a phone number</small>
               </div>
               <div class="form-group">
@@ -76,11 +57,8 @@
                   <option value="3">pass</option>
                   <option value="0">fail</option>
                 </select>
-
-
                 <input type="text" class="form-control" name="C1" id="C1" value="{{ old('C1') }}" aria-describedby="helpId" placeholder="Some comment about this question?">
                 <small id="helpId" class="form-text text-muted">write a short comment about it</small>
-
               </div>
               <div class="form-group">
                 <label for="Q2">2.- Did the agent mention his/ her name and company name ?
@@ -90,11 +68,8 @@
                   <option value="3">pass</option>
                   <option value="0">fail</option>
                 </select>
-
-
                 <input type="text" class="form-control" name="C2" id="C2" value="{{ old('C2') }}" aria-describedby="helpId" placeholder="Some comment about this question?">
                 <small id="helpId" class="form-text text-muted">write a short comment about it</small>
-
               </div>
               <div class="form-group">
                 <label for="Q3">3.-Agent pro-actively added value throughout call

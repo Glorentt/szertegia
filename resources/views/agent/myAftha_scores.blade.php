@@ -3,7 +3,9 @@
 @section('title', 'All Scores')
 
 @section('content')
-<meta name="_token" content="{!! csrf_token() !!}"/>
+<head>
+    <meta name="_token" content="{!! csrf_token() !!}"/>
+</head>
 <script>
     //script to change active class in submenus
     $(document).ready(function(){
@@ -26,11 +28,11 @@
 
 <div class="row" >
             @if (\Session::has('name')== 'Abril')
-				<div class="alert alert-danger">
+				<!-- <div class="alert alert-danger">
 					<ul>
 						<li>Hector</li>
 					</ul>
-				</div>
+				</div> -->
 			@endif
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <div class="card mb-3">
@@ -53,8 +55,7 @@
                                 <th>Audio</th>
                                 <th>Phone</th>
                                 <th>QA</th>
-                                <th>date</th>
-
+                                <th>Date</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -76,14 +77,13 @@
      <div class="modal-dialog" role="document">
          <div class="modal-content">
              <div class="modal-header">
-             <h4 class="modal-title" id="modelTitleId">Comments</h4>
-                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-
+                <h4 class="modal-title" id="modelTitleId">Comments</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
              </div>
              <div class="modal-body">
-                 <div class='row'>
+                <div class='row'>
                     <div class="col-md-12">
                         <label for="phone">Phone number:
                         <p id="c1"></p></label>
@@ -128,16 +128,14 @@
 
                     </div>
 
-<div class='form-group col-md-6' >
+                <div class='form-group col-md-6' >
                     <label for="Q8" class='text-primary'>8.-Did the agent disposition correctly?
                     <p id="c10" class="text-secondary">No comments</p></label>
 
                     </div>
-<div class='form-group col-md-6' >
-                    <label for="Q9" class='text-primary'>9.-Agent avoided long silences during the call/ transfers?
-				including knowing when to rebuttal a callback?
+                    <div class='form-group col-md-6' >
+                    <label for="Q9" class='text-primary'>9.-Agent avoided long silences during the call/ transfers? including knowing when to rebuttal a callback?
                     <p id="c11" class="text-secondary">No comments</p></label>
-
                     </div>
 
                     <div class='form-group col-md-6' >
@@ -185,85 +183,92 @@
                         <label for="Q20" class='text-primary'>20.- Agent rebuttaled during call and continued with the script// scheduled call back  correctly
                         <p id="c22" class="text-secondary">No comments</p></label>
                     </div>
-                    
-
-
-                 </div>
-                 <div><div class='form-group col-md-12' >
-                    <label for="Qf" class='text-primary'>Final:
-                    <p id="c23" class="text-secondary">No Comments</p></label>
-
+                </div>
+                <div>
+                    <div class='form-group col-md-12' >
+                        <label for="Qf" class='text-primary'>Final:
+                            <p id="c23" class="text-secondary">No Comments</p>
+                        </label>
                     </div>
                 </div>
              </div>
 
-
-
              <div class="modal-footer">
                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                  <button type="button" class="btn btn-success" data-dismiss="modal" id="acknowledge" >Aknowledge</button>
-
+                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
              </div>
          </div>
      </div>
  </div>
+ <script>
+    function showComments(val) {
+        
+        $.ajax({url: "getcomments/"+val, success: function(result){
+            var arraycomments = result.split('=>');
+            
+            var length = arraycomments.length-1;
+
+            for (let i = 0; i < arraycomments.length; i++) {
+                var j = i+1;
+                $('#c'+j).html(arraycomments[i]);
+               
+                
+                
+                $('#acknowledge').val(val);
+                // $('#acknowledge').val(arraycomments[14]);
+            }
+
+            // alert(14);
+            $("#modelComments").modal();
+        }});
+        // $("#modelComments").modal();
+        // console.log(val);
+    }
+</script>
 <script type="text/javascript">
-  $(document).ready(function() {
-   $.ajaxSetup({
-           headers: {'X-CSRF-Token': $('meta[name=_token]').attr('content')}
-       });
- });
+    $(document).ready(function() {
 
-  $("#acknowledge").click(function(e) {
-    e.preventDefault();
-    var id = $(this).attr("value");
-    $.ajax({
-        type: "POST",
-        url: "my",
-        data: {
-            comment: $(this).attr("value") // < note use of 'this' here
-        },
-        success: function(result) {
-          alert(result);
-          location.reload();
-          // var table = $('#scoreTable').DataTable( {
-          //     ajax: "scoreAftha/my/data.json/my"
-          // } );
-          //
-          // setInterval( function () {
-          //     table.ajax.reload();
-          // });
-        },
-        error: function(result) {
-            alert(result);
-        }
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $("#acknowledge").click(function(e) {
+            e.preventDefault();
+            
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "my",
+                    data: {
+                        comment: $(this).attr('value') // < note use of 'this' here
+                    }, 
+                    success: function(result) {
+                        console.log("Result success: ",result);
+                        alert("Se ha realizado el POST con éxito"+result);
+                        location.reload();
+                        // var table = $('#scoreTable').DataTable( {
+                        //     ajax: "scoreAftha/my/data.json/my"
+                        // } );
+                        //
+                        // setInterval( function () {
+                        //     table.ajax.reload();
+                        // });
+                    },
+                    error: function(result) {
+                        console.log("Result error: ",result);
+                        alert(result);
+                    }
+                }
+            );
+
+        });
     });
-
-});
 </script>
 
 
-<script>
-function showComments(val) {
-    $.ajax({url: "getcomments/"+val, success: function(result){
-        var arraycomments = result.split('=>');
-        console.log(arraycomments);
-        var length = arraycomments.length-1;
-
-        for (let i = 0; i < arraycomments.length; i++) {
-            var j = i+1;
-            $('#c'+j).html(arraycomments[i]);
-            $('#acknowledge').val(arraycomments[14]);
-        }
-
-        $("#modelComments").modal();
-    }});
-    // $("#modelComments").modal();
-    // console.log(val);
-
-}
-
-</script>
 <script>
 $(document).ready(function() {
 

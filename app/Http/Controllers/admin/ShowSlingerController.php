@@ -51,10 +51,7 @@ class ShowSlingerController extends Controller
             'Q12'=>'required',
             'Q13'=>'required',
             'Q14'=>'required',
-            'Q15'=>'required',
-            'Q16'=>'required',
-            'Q17'=>'required',
-            'Q18'=>'required',
+        
             'C1'=>'max:189',
             'C2'=>'max:189',
             'C3'=>'max:189',
@@ -69,10 +66,7 @@ class ShowSlingerController extends Controller
             'C12'=>'max:189',
             'C13'=>'max:189',
             'C14'=>'max:189',
-            'C15'=>'max:189',
-            'C16'=>'max:189',
-            'C17'=>'max:189',
-            'C18'=>'max:189',
+
             'finalScore'=>'numeric',
             'finalComment'=>'required'
         ]);
@@ -90,10 +84,7 @@ class ShowSlingerController extends Controller
         $show->Q12 = $request->Q12;
         $show->Q13 = $request->Q13;
         $show->Q14 = $request->Q14;
-        $show->Q15 = $request->Q15;
-        $show->Q16 = $request->Q16;
-        $show->Q17 = $request->Q17;
-        $show->Q18 = $request->Q18;
+  
         $show->C1 = $request->C1;
         $show->C2 = $request->C2;
         $show->C3 = $request->C3;
@@ -108,10 +99,7 @@ class ShowSlingerController extends Controller
         $show->C12 = $request->C12;
         $show->C13 = $request->C13;
         $show->C14 = $request->C14;
-        $show->C15 = $request->C15;
-        $show->C16 = $request->C16;
-        $show->C17 = $request->C17;
-        $show->C18 = $request->C18;
+
         $show->score= $request->finalScore;
         $show->QA_id = $request->QA_id;
         $show->user_id= $request->agentID;
@@ -119,9 +107,9 @@ class ShowSlingerController extends Controller
         $show->FC = $request->finalComment;
         $show->phone = $request->phone; 
         if($show->save()){
-            return redirect('admin/showslingers')->with('success','Qualify stored successfully');
+            return redirect('admin/bizwell')->with('success','Qualify stored successfully');
         }else{
-            return redirect('admin/showslingers')->withInput($request->only('C1','C2','C3','C4','C5','C6','C7','C8','C9','C10','C11','C12','C13','C14','C15','C16','C17','C18','finalComment','audio'));
+            return redirect('admin/bizwell')->withInput($request->only('C1','C2','C3','C4','C5','C6','C7','C8','C9','C10','C11','C12','C13','C14','finalComment','audio'));
         }
     }
 
@@ -136,7 +124,7 @@ class ShowSlingerController extends Controller
         
     }
     public function getComments($id){
-        $comments = showslinger::select(array('C1','C2','C3','C4','C5','C6','C7','C8','C9','C10','C11','C12','C13','C14','C15','C16','C17','C18','FC','phone','audio','Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8','Q9','Q10','Q11','Q12','Q13','Q14','Q15','Q16','Q17','Q18'))
+        $comments = showslinger::select(array('C1','C2','C3','C4','C5','C6','C7','C8','C9','C10','C11','C12','C13','C14','FC','phone','audio','Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8','Q9','Q10','Q11','Q12','Q13','Q14'))
         ->where('id',$id)->get();
         foreach ($comments as $key => $value) {
             echo $value['phone'].'=>';
@@ -155,16 +143,13 @@ class ShowSlingerController extends Controller
             echo $value['C12'].'=>';
             echo $value['C13'].'=>';
             echo $value['C14'].'=>';
-            echo $value['C15'].'=>';
-            echo $value['C16'].'=>';
-            echo $value['C17'].'=>';
-            echo $value['C18'].'=>';
+      
             echo $value['FC'].'=>'; 
             $a=1;
             do {
                 echo $value['Q'.$a].'=>'; 
                     $a++;
-            } while ($a <= 18);
+            } while ($a <= 14);
                          
             
             
