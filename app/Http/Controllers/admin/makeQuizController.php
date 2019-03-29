@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Answer;
+use App\makeQuiz;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AnswerController extends Controller
+class makeQuizController extends Controller
 {
-
+    
     /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
      */
-    public $answer = null;
+    // public $answer = null;
     public function index(Request $request)
     { 
-        $answers=\App\Answer::paginate(5);
-        return view('admin.answers', compact('answers'));
+        // $makequiz=\App\makeQuiz::paginate(5);
+        return view('admin.makequizzes', compact('makequiz'));
     }
 
     /**
@@ -27,8 +27,7 @@ class AnswerController extends Controller
      */
     public function create()
     {
-        // return view('answer.create');
-        return view('answer.registerAnswer');
+        // return view('answer.registerAnswer');
     }
 
     /**
@@ -39,18 +38,18 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'answer_name' =>'required|max:100',
-        ]);
+        // $request->validate([
+        //     'answer_name' =>'required|max:100',
+        // ]);
 
-        $answer = new Answer();
-        $answer->answer_name = $request['answer_name'];
+        // $answer = new Answer();
+        // $answer->answer_name = $request['answer_name'];
         
-        if($answer->save()){
-            return redirect('admin/answers')->with('success','Registered answer successfully');
-        }else{
-            return redirect('admin/answers')->withInput($request->only('answer_name'));
-        }
+        // if($answer->save()){
+        //     return redirect('admin/answers')->with('success','Registered answer successfully');
+        // }else{
+        //     return redirect('admin/answers')->withInput($request->only('answer_name'));
+        // }
     }
 
     /**
@@ -61,8 +60,8 @@ class AnswerController extends Controller
      */
     public function show($id)
     {
-        $answer = Answer::find($id);
-        return view('admin.viewAnswer', compact('answer'));
+        // $answer = Answer::find($id);
+        // return view('admin.viewAnswer', compact('answer'));
     }
 
     /**
@@ -73,8 +72,8 @@ class AnswerController extends Controller
      */
     public function edit($id)
     {
-        $answer = Answer::find($id);
-        return view('admin.editAnswer', compact('answer'));
+        // $answer = Answer::find($id);
+        // return view('admin.editAnswer', compact('answer'));
     }
 
     /**
@@ -86,11 +85,11 @@ class AnswerController extends Controller
      */
     public function update(Request $request, Answer $answer)
     {
-        $answer->fill($request->all());
-        if($answer->save()){
-            return redirect('admin/answers')->with("success","Actualizado correctamente");
-        }
-        return redirect('admin/answers')->with("error","ther was an error");
+        // $answer->fill($request->all());
+        // if($answer->save()){
+        //     return redirect('admin/answers')->with("success","Actualizado correctamente");
+        // }
+        // return redirect('admin/answers')->with("error","ther was an error");
     }
 
     /**
@@ -101,10 +100,10 @@ class AnswerController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        if(Answer::destroy($id)){
-            return redirect('admin/answers')->with("success","Eliminado correctamente");
-        } else {
-            return redirect('admin/answers')->with("error","ther was an error");
-        }
+        // if(Answer::destroy($id)){
+        //     return redirect('admin/answers')->with("success","Eliminado correctamente");
+        // } else {
+        //     return redirect('admin/answers')->with("error","ther was an error");
+        // }
     }
 }

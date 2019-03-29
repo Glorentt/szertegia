@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTypeAnsControllersTable extends Migration
+class CreateTypeQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateTypeAnsControllersTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_ans_controllers', function (Blueprint $table) {
+        Schema::create('type_questions', function (Blueprint $table) {
             $table->increments('id');
+            $table->longText('type_name')->nullable();
+            $table->integer('question_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateTypeAnsControllersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_ans_controllers');
+        Schema::dropIfExists('type_questions');
     }
 }

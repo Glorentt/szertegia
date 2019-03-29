@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Question;
-use Illuminate\Http\Request;
-use App\Http\Requests\StoreQuestionRequest;
+use Illuminate\Http\Request; // use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Controllers\Controller;
 
 class QuizController extends Controller
@@ -28,7 +27,8 @@ class QuizController extends Controller
      */
     public function create()
     {
-        return view('question.create');
+        // return view('question.create');
+        return view('question.registerQuestion');
     }
 
     /**
@@ -59,22 +59,13 @@ class QuizController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show($id)
     {
-        $request->validate([
-            'question_name' =>'required|max:150',
-        ]);
-        
-        $questions = Question::find($id);
-        $questions->question_name = $request['question_name'];
-        $questions->user_id = $request['user_id'];
-        $questions->exam_id = $request['exam_id'];
-        $questions->updated_at = $request['updated_at'];
-
-        if($questions->save()){
-            return redirect('admin/questions')->with("success","Actualizado correctamente");
-        }
-        return redirect('admin/questions')->with("error","ther was an error");
+        $question = Question::find($id);
+        return view('admin.viewQuestion', compact('question'));
+        // $request->validate([
+        //     'question_name' =>'required|max:150',
+        // ]);
     }
 
     /**
@@ -85,14 +76,8 @@ class QuizController extends Controller
      */
     public function edit($id)
     {
-        $questions = Question::findorFail($id);
-        $quest =$questions->toArray();
-        echo $quest['id'].",";
-        echo $quest['question_name'].",";
-        echo $quest['user_id'].",";
-        echo $quest['exam_id'].",";
-        echo $quest['created_at'].",";
-        echo $quest['updated_at'];
+        $question = Question::find($id);
+        return view('admin.editQuestion', compact('question'));
     }
 
     /**
@@ -102,9 +87,13 @@ class QuizController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Question $question)
     {
-        echo "method update";
+        $question->fill($request->all());
+        if($question->save()){
+            return redirect('admin/questions')->with("success","Actualizado correctamente");
+        }
+        return redirect('admin/questions')->with("error","ther was an error");
     }
 
     /**

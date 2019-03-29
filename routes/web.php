@@ -29,31 +29,50 @@ Route::prefix('admin')->group(function (){
         //handle users
         Route::post('users/password','admin\UserController@change_password')->name('admin.resetPassword');
         Route::get('users/password', function(){ echo "string"; })->name('admin.resetPasswordview');
+        //Answers
         Route::GET('/answers/{id}/edit','admin\AnswerController@edit')->name('admin.answers.edit');
         Route::GET('/answers/{id}','admin\AnswerController@show')->name('admin.answers.show');
         Route::DELETE('/answers/{id}','admin\AnswerController@destroy')->name('admin.answers.destroy');
         Route::resource('/answers','admin\AnswerController')->names([
             'index'=>'admin.answers.index',
             'store'=>'admin.answers.store',
-            // 'edit'=>'admin.answers.edit',
-            // 'update'=>'admin.answers.update',
             'destroy'=>'admin.answers.destroy',
         ]);
+        //Questions
+        Route::GET('/questions/{id}/edit','admin\QuizController@edit')->name('admin.questions.edit');
+        Route::GET('/questions/{id}','admin\QuizController@show')->name('admin.questions.show');
         Route::DELETE('/questions/{id}','admin\QuizController@destroy')->name('admin.questions.destroy');
         Route::resource('/questions','admin\QuizController')->names([
             'index'=>'admin.questions.index',
             'store'=>'admin.questions.store',
-            'edit'=>'admin.questions.edit',
-            'update'=>'admin.questions.update',
             'destroy'=>'admin.questions.destroy',
         ]);
+        //Forms
+        Route::GET('/forms/{id}/edit','admin\FormController@edit')->name('admin.forms.edit');
+        Route::GET('/forms/{id}','admin\FormController@show')->name('admin.forms.show');
         Route::DELETE('/forms/{id}','admin\FormController@destroy')->name('admin.forms.destroy');
         Route::resource('/forms','admin\FormController')->names([
             'index'=>'admin.forms.index',
             'store'=>'admin.forms.store',
-            'edit'=>'admin.forms.edit',
-            'update'=>'admin.forms.update',
+            // 'edit'=>'admin.forms.edit',
+            // 'update'=>'admin.forms.update',
             'destroy'=>'admin.forms.destroy',
+        ]);
+        //makeQuiz
+        Route::resource('/makequizzes','admin\makeQuizController')->names([
+            'index'=>'admin.makequizzes.index',
+            // 'store'=>'admin.forms.store',
+            // 'edit'=>'admin.forms.edit',
+            // 'update'=>'admin.forms.update',
+            // 'destroy'=>'admin.forms.destroy',
+        ]);
+        //Exam
+        Route::resource('/exams','admin\ExamController')->names([
+            'index'=>'admin.exams.index',
+            // 'store'=>'admin.forms.store',
+            // 'edit'=>'admin.forms.edit',
+            // 'update'=>'admin.forms.update',
+            // 'destroy'=>'admin.forms.destroy',
         ]);
         Route::resource('/users','admin\UserController')->names([
             'index'=>'admin.users.index',

@@ -13,7 +13,7 @@
         <h5 class="card-header">Edit Form</h5>
         <div class="card-body">
             <h5 class="card-title">Form to edit an existent form.</h5>
-            <form class="was-validated" id="formEdit" method="PUT" action="{{route('admin.forms.update',15)}}">
+            <form class="was-validated" id="formEdit" method="POST" action="/admin/forms/{{$form->id}}">
                 @method('PUT')
                 @csrf
                 <div class="container">
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="reset" class="btn btn-danger" onclick="hideForm()">Cancel</button>
+                        <button type="reset" class="btn btn-danger" onclick="window.location.href='{{route('admin.forms.index')}}'">Cancel</a></button>
                         <button type="submit" class="btn btn-primary">Actualizar</button>
                     </div>
                 </div>

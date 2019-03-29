@@ -26,47 +26,58 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <h3><i class="fa fa-table"></i> All Questions</h3>
-                    All questions are shown here, if you want to go for a specific type of question, you should look for it as a position;
+                    All questions are shown here.
                 </div>
                 <div class="card-body">
                     <div>
                         Remember that you can <a href="javascript:showCreate()" ><b>Add a new question</b></a>:
                     </div>
+                    <td class="center">
+                        <a href="javascript:showCreate()" class="btn btn-success">
+                            <i class="fa fa-cross" style="font-size:24px; color: white;"></i>
+                        </a>
+                    </td>
                     <div class="table-responsive">
                         @if (\Session::has('success'))
                         <div class="alert alert-success">
                             <p>{{ \Session::get('success') }}</p>
                         </div><br />
                         @endif
-                        <table id="QuestionsTable" class="table table-bordered table-hover display">
+                        <table id="QuestionsTable" class="table table-borderless table-hover display">
                             <thead>
                                 <tr>
-                                    <!-- <th>ID</th> -->
-                                    <th>Name</th>
-                                    <!-- <th>User ID</th> -->
-                                    <!-- <th>Status</th> -->
-                                    <th>Created At</th>
-                                    <th>Updated At</th>
-                                    <th colspan="4">Action</th>
+                                    <!-- <th class="center">ID</th> -->
+                                    <th class="center">Name</th>
+                                    <th class="center">User ID</th>
+                                    <th class="center">Status</th>
+                                    <th class="center">Created At</th>
+                                    <th class="center">Updated At</th>
+                                    <th class="center" colspan="3">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach($questions as $question)
                                 <tr>
-                                    <!-- <td>{{$question->id}}</td> -->
-                                    <td>{{$question->question_name}}</td>
-                                    <!-- <td>{{$question->user_id}}</td> -->
-                                    <!-- <td>{{$question->exam_id}}</td> -->
-                                    <td>{{$question->created_at}}</td>
-                                    <td>{{$question->updated_at}}</td>
-                                    <td><a href="javascript:showEdit({{$question->id}})" class="btn btn-success">Edit</a></td>
-                                    <td>
-                                        <form action="{{ route('admin.questions.destroy', $question->id) }}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <button class="btn btn-danger" type="submit">Delete</button>
-                                        </form>
+                                    <!-- <td class="center">{{$question->id}}</td> -->
+                                    <td class="center">{{$question->question_name}}</td>
+                                    <td class="center">{{$question->user_id}}</td>
+                                    <td class="center">{{$question->exam_id}}</td>
+                                    <td class="center">{{$question->created_at}}</td>
+                                    <td class="center">{{$question->updated_at}}</td>
+                                    <td class="center">
+                                        <a href="{{ route('admin.questions.show', $question->id) }}" class="btn btn-primary">
+                                            <i class="fa fa-eye" style="font-size:24px; color: white;"></i>
+                                        </a>
+                                    </td>
+                                    <td class="center">
+                                        <a href="{{ route('admin.questions.edit', $question->id) }}" class="btn btn-success">
+                                            <i class="fa fa-pencil" style="font-size:24px; color: white;"></i>
+                                        </a>
+                                    </td>
+                                    <td class="center">
+                                        <a data-toggle="modal" data-target="#centralModalSuccess" class="btn btn-danger">
+                                            <i class="fa fa-trash" style="font-size:24px; color: white;"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -74,7 +85,7 @@
                         </table>
                         <table>
                             <tbody>
-                                <td>{{$questions->links()}}</td>
+                                <td class="center">{{$questions->links()}}</td>
                             </tbody>
                         </table>
                     </div>
@@ -85,36 +96,55 @@
     <div id="createQuestion" style="display: none;">
         @include('admin.registerQuestion')
     </div>
-    <div id="editQuestion" style="display: none;">
-        @include('admin.editQuestion')
+        <!-- Central Modal Medium Success -->
+        <div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-success" role="document">
+            <!--Content-->
+            <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <p class="heading lead">Confirm Deletion</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <div class="text-center">
+                <!-- <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i> -->
+                <p>Are you sure you want to permanently remove this register?</p>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <form action="{{ route('admin.questions.destroy', $question->id) }}" method="POST" data-toggle="modal" data-target="#centralModalSuccess">
+                    @method('DELETE')
+                    @csrf
+                    <input name="_method" type="hidden" value="DELETE">
+                    <button class="btn btn-danger" type="submit">Delete<i class="far fa-gem ml-1 white-text"></i></button>
+                    <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">Cancel</a>
+                </form>
+            </div>
+            </div>
+            <!--/.Content-->
+        </div>
     </div>
+    <!-- Central Modal Medium Success-->
 @endsection
 <script>
     function showCreate() {
         console.log('showCreate');
         $("#tableQuestionsShowed").hide();
-        $("#editQuestion").hide();
         $("#createQuestion").show();
     }
 
     function hideForm() {
         console.log('hideForm');
         $("#tableQuestionsShowed").show();
-        $("#editQuestion").hide();
         $("#createQuestion").hide();
-    }
-
-    function showEdit(id) {
-        console.log("ID showEdit: ",id)
-        $("#tableQuestionsShowed").hide();
-        $("#createQuestion").hide();
-        $.get("questions/"+id+"/edit", function(data, status){
-            console.log("data showEdit: ",data);
-            var datos = data.split(",");
-            $("#question_name").val(datos[1]);
-            $("#formEdit").attr("action","http://tracking.szertegia.dc/admin/questions/"+id);
-        });
-        $("#editQuestion").show();
     }
     
 </script>

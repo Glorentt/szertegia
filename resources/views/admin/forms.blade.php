@@ -38,50 +38,46 @@
                             <p>{{ \Session::get('success') }}</p>
                         </div><br />
                         @endif
-                        <table id="FormsTable" class="table table-bordered table-hover display">
-                            <thead>
+                        <table id="FormsTable" class="table table-borderless table-hover display">
+                            <thead class="indigo white-text">
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>User ID</th>
-                                    <th>Created At</th>
-                                    <th>Updated At</th>
-                                    <th colspan="3">Action</th>
+                                    <th class="center">Name</th>
+                                    <th class="center">User ID</th>
+                                    <th class="center">Created At</th>
+                                    <th class="center">Updated At</th>
+                                    <th colspan="4" class="center">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="blue-grey lighten-5">
                             @foreach($forms as $form)
                                 <tr>
-                                    <td>{{$form->id}}</td>
-                                    <td>{{$form->form_name}}</td>
-                                    <td>{{$form->user_id}}</td>
-                                    <td>{{$form->created_at}}</td>
-                                    <td>{{$form->updated_at}}</td>
-                                    {{-- <td><a href="javascript:showEdit({{$form->id}})" class="btn btn-success">Edit</a></td> --}}
-                                    <td>
-                                        {{-- <a href="{{ route('admin.forms.show', $form->id) }}" class="btn btn-primary">View</a> --}}
-                                        <a href="#" class="btn btn-primary">View</a>
+                                    <td class="center">{{$form->id}}</td>
+                                    <td class="center">{{$form->form_name}}</td>
+                                    <td class="center">{{$form->user_id}}</td>
+                                    <td class="center">{{$form->created_at}}</td>
+                                    <td class="center">{{$form->updated_at}}</td>
+                                    <td class="center">
+                                        <a href="{{ route('admin.forms.show', $form->id) }}" class="btn btn-primary">
+                                            <i class="fa fa-eye" style="font-size:24px; color: white;"></i>
+                                        </a>
                                     </td>
-                                    <td>
-                                        {{-- <a href="{{ route('admin.forms.edit', $form->id) }}" class="btn btn-success">Edit</a> --}}
-                                        <a href="#" class="btn btn-success">Edit</a>
+                                    <td class="center">
+                                        <a href="{{ route('admin.forms.edit', $form->id) }}" class="btn btn-success">
+                                            <i class="fa fa-pencil" style="font-size:24px; color: white;"></i>
+                                        </a>
                                     </td>
-                                    <td>
-                                        
-                                        <form action="{{ route('admin.forms.destroy', $form->id) }}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <button class="btn btn-danger" type="submit">Delete</button>
-                                        </form>
+                                    <td class="center">
+                                        <a data-toggle="modal" data-target="#centralModalSuccess" class="btn btn-danger">
+                                            <i class="fa fa-trash" style="font-size:24px; color: white;"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                         <table>
-                            <tbody>
-                                <td>{{$forms->links()}}</td>
+                            <tbody class="center">
+                                <td class="center">{{$forms->links()}}</td>
                             </tbody>
                         </table>
                     </div>
@@ -92,37 +88,67 @@
     <div id="createForm" style="display: none;">
         @include('admin.registerForm')
     </div>
-    {{-- <div id="editForm" style="display: none;">
-        @include('admin.editForm')
-    </div> --}}
+    <!-- Central Modal Medium Success -->
+    <div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-success" role="document">
+            <!--Content-->
+            <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <p class="heading lead">Confirm Deletion</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <div class="text-center">
+                <!-- <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i> -->
+                <p>Are you sure you want to permanently remove this register?</p>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <form action="{{ route('admin.forms.destroy', $form->id) }}" method="POST" data-toggle="modal" data-target="#centralModalSuccess">
+                    @method('DELETE')
+                    @csrf
+                    <input name="_method" type="hidden" value="DELETE">
+                    <button class="btn btn-danger" type="submit">Delete<i class="far fa-gem ml-1 white-text"></i></button>
+                    <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">Cancel</a>
+                </form>
+                <!-- <a type="button" class="btn btn-danger">Delete <i class="far fa-gem ml-1 white-text"></i></a> -->
+                <!-- <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">Cancel</a> -->
+            </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!-- Central Modal Medium Success-->
 @endsection
+<script>
+    $("#centralModalSuccess").on('show.bs.modal', function(){
+    alert("The register removed correctly!");
+    });
+</script>
+<style>
+    .center {
+        text-align: center;
+    }
+</style>
 <script>
     function showCreate() {
         console.log('showCreate');
         $("#tableFormsShowed").hide();
-        // $("#editForm").hide();
         $("#createForm").show();
     }
 
     function hideForm() {
         console.log('hideForm');
         $("#tableFormsShowed").show();
-        // $("#editForm").hide();
         $("#createForm").hide();
     }
-
-    // function showEdit(id) {
-    //     console.log("ID showEdit: ",id)
-    //     $("#tableFormsShowed").hide();
-    //     $("#createForm").hide();
-    //     $.get("forms/"+id+"/edit", function(data, status){
-    //         console.log("data showEdit: ",data);
-    //         var datos = data.split(",");
-    //         $("#form_name").val(datos[1]);
-    //         $("#formEdit").attr("action","http://tracking.szertegia.dc/admin/forms/"+id);
-    //     });
-    //     $("#editForm").show();
-    // }
-    
 </script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

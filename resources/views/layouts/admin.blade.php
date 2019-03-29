@@ -126,9 +126,9 @@
 						</a>
 						<ul class="list-unstyled">
 							<li><a href="{{route('admin.users.index')}} " >All Users</a></li>
-							{{-- <li><a href="{{route('admin.users.index')}} " id="sub_evaluate_aftha" >Users log</a></li>
+							<!-- <li><a href="{{route('admin.users.index')}} " id="sub_evaluate_aftha" >Users log</a></li>
 							<li><a href="{{route('admin.users.index')}} " id="sub_evaluate_aftha" >Users sales</a></li>
-							<li><a href="{{route('admin.users.index')}} " id="sub_evaluate_aftha" >Users Campaigns</a></li> --}}
+							<li><a href="{{route('admin.users.index')}} " id="sub_evaluate_aftha" >Users Campaigns</a></li> -->
 						</ul>
 					</li>
 				</ul>
@@ -158,10 +158,12 @@
 						</a>
 						<ul class="list-unstyled">
 							<li><a href="{{route('admin.forms.index')}}" id="sub_quiz" >Formularios</a></li>
-							{{-- <li><a href="{{route('admin.questions.index')}}" id="sub_quiz" >Preguntas</a></li> --}}
+							<li><a href="{{route('admin.questions.index')}}" id="sub_quiz" >Preguntas</a></li>
 							<li><a href="{{route('admin.answers.index')}}" id="sub_quiz" >Respuestas</a></li>
-							{{-- <li><a href="#" id="sub_quiz" >Lista de Campañas</a></li> --}}
-							{{-- <li><a href="#" id="sub_quiz" >Tipo de Respuesta</a></li> --}}
+							<li><a href="{{route('admin.makequizzes.index')}}" id="sub_quiz" >Make Quiz</a></li>
+							<li><a href="{{route('admin.exams.index')}}" id="sub_quiz" >Start Exam</a></li>
+							<!-- <li><a href="#" id="sub_quiz" >Lista de Campañas</a></li> -->
+							<!-- <li><a href="#" id="sub_quiz" >Tipo de Respuesta</a></li> -->
 						</ul>
 					</li>
 				</ul>

@@ -73,13 +73,8 @@ class FormController extends Controller
      */
     public function edit($id)
     {
-        $forms = Form::findorFail($id);
-        $quest =$forms->toArray();
-        echo $quest['id'].",";
-        echo $quest['form_name'].",";
-        echo $quest['user_id'].",";
-        echo $quest['created_at'].",";
-        echo $quest['updated_at'];
+        $form = Form::find($id);
+        return view('admin.editForm', compact('form'));
     }
 
     /**
@@ -89,9 +84,13 @@ class FormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Form $form)
     {
-        echo "method update";
+        $form->fill($request->all());
+        if($form->save()){
+            return redirect('admin/forms')->with("success","The register updated correctly.");
+        }
+        return redirect('admin/forms')->with("error","ther was an error");
     }
 
     /**

@@ -33,51 +33,52 @@
                         Remember that you can <a href="javascript:showCreate()" ><b>Add a new answer</b></a>:
                     </div>
                     <div class="table-responsive">
-                        <table id="AnswersTable" class="table table-bordered table-hover display">
+                        <table id="AnswersTable" class="table table-borderless table-hover display">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    {{-- <th>Type Answer</th> --}}
-                                    {{-- <th>Correct Answer</th> --}}
-                                    <th>Score</th>
-                                    {{-- <th>Campaing</th> --}}
-                                    {{-- <th>Question ID</th> --}}
-                                    <!-- <th>User ID</th> -->
-                                    <!-- <th>Status</th> -->
-                                    {{-- <th>Created At</th> --}}
-                                    <th>Updated At</th>
-                                    <th colspan="3">Action</th>
+                                    <th class="center">ID</th>
+                                    <th class="center">Name</th>
+                                    <!-- <th class="center">Type Answer</th> -->
+                                    <!-- <th class="center">Correct Answer</th> -->
+                                    <th class="center">Score</th>
+                                    <!-- <th class="center">Campaing</th> -->
+                                    <!-- <th class="center">Question ID</th> -->
+                                    <!-- <th class="center">User ID</th> -->
+                                    <!-- <th class="center">Status</th> -->
+                                    <!-- <th class="center">Created At</th> -->
+                                    <th class="center">Updated At</th>
+                                    <th class="center" colspan="3">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($answers as $answer)
                                 <tr>
                                     
-                                    <td>{{$answer->id}}</td>
-                                    <td>{{$answer->answer_name}}</td>
-                                    {{-- <td>{{$answer->type_answer_id}}</td> --}}
-                                    {{-- <td>{{$answer->correct_answer}}</td> --}}
-                                    <td>{{$answer->score_answer}}</td>
-                                    {{-- <td>{{$answer->campaing_id}}</td> --}}
-                                    {{-- <td>{{$answer->question_id}}</td> --}}
-                                    <!-- <td>{ {$answer->user_id}}</td> -->
-                                    <!-- <td>{ {$answer->status_id}}</td> -->
-                                    {{-- <td>{{$answer->created_at}}</td> --}}
-                                    <td>{{$answer->updated_at}}</td>
-                                    <td>
-                                        <a href="{{ route('admin.answers.show', $answer->id) }}" class="btn btn-primary">View</a>
+                                    <td class="center">{{$answer->id}}</td>
+                                    <td class="center">{{$answer->answer_name}}</td>
+                                    <!-- <td class="center">{{$answer->type_answer_id}}</td> -->
+                                    <!-- <td class="center">{{$answer->correct_answer}}</td> -->
+                                    <td class="center">{{$answer->score_answer}}</td>
+                                    <!-- <td class="center">{{$answer->campaing_id}}</td> -->
+                                    <!-- <td class="center">{{$answer->question_id}}</td> -->
+                                    <!-- <td class="center">{ {$answer->user_id}}</td> -->
+                                    <!-- <td class="center">{ {$answer->status_id}}</td> -->
+                                    <!-- <td class="center">{{$answer->created_at}}</td> -->
+                                    <td class="center">{{$answer->updated_at}}</td>
+                                    <td class="center">
+                                        <a href="{{ route('admin.answers.show', $answer->id) }}" class="btn btn-primary">
+                                            <i class="fa fa-eye" style="font-size:24px; color: white;"></i>
+                                        </a>
                                     </td>
-                                    <td>
-                                        <a href="{{ route('admin.answers.edit', $answer->id) }}" class="btn btn-success">Edit</a>
+                                    <td class="center">
+                                        <a href="{{ route('admin.answers.edit', $answer->id) }}" class="btn btn-success">
+                                            <i class="fa fa-pencil" style="font-size:24px; color: white;"></i>
+                                        </a>
                                     </td>
-                                    <td>
-                                        <form action="{{ route('admin.answers.destroy', $answer->id) }}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <button class="btn btn-danger" type="submit">Delete</button>
-                                        </form>
+                                    <td class="center">
+                                        <a data-toggle="modal" data-target="#centralModalSuccess" class="btn btn-danger">
+                                            <i class="fa fa-trash" style="font-size:24px; color: white;"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -85,7 +86,7 @@
                         </table>
                         <table>
                             <tbody>
-                                <td>{{$answers->links()}}</td>
+                                <td class="center">{{$answers->links()}}</td>
                             </tbody>
                         </table>
                     </div>
@@ -96,7 +97,49 @@
     <div id="createAnswer" style="display: none;">
         @include('admin.registerAnswer')
     </div>
+    <!-- Central Modal Medium Success -->
+    <div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-success" role="document">
+            <!--Content-->
+            <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <p class="heading lead">Confirm Deletion</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <div class="text-center">
+                <!-- <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i> -->
+                <p>Are you sure you want to permanently remove this register?</p>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <form action="{{ route('admin.answers.destroy', $answer->id) }}" method="POST" data-toggle="modal" data-target="#centralModalSuccess">
+                    @method('DELETE')
+                    @csrf
+                    <input name="_method" type="hidden" value="DELETE">
+                    <button class="btn btn-danger" type="submit">Delete<i class="far fa-gem ml-1 white-text"></i></button>
+                    <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">Cancel</a>
+                </form>
+            </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!-- Central Modal Medium Success-->
 @endsection
+<script>
+    $("#centralModalSuccess").on('show.bs.modal', function(){
+    alert("The register removed correctly!");
+    });
+</script>
 <script>
     function showCreate() {
         console.log('showCreate');

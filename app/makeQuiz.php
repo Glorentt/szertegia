@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TypeAnsController extends Model
+class makeQuiz extends Model
 {
-    //
+    protected $fillable = [];
 }
