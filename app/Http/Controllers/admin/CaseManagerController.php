@@ -170,8 +170,10 @@ class CaseManagerController extends Controller {
     * @return \Illuminate\Http\Response
   */
   public function destroy($id){
-    //
-  }
+    $user = Casemanager::find($id);
+    $user->delete();
+    return redirect('/admin/scoreCase')->with('success','evaluation deleted');
+}
   
   public function getAllScores(){
     $this->user = Casemanager::select(
@@ -198,7 +200,7 @@ class CaseManagerController extends Controller {
         'data-content'	=>	"
           <div>
             <a class='btn btn-secondary btn-block' href='javascript:showComments(".$user['DT_RowId'].")'>View comments</a>
-            <form style='margin-top: 5px;' action='".url("admin/scoreAftha/".$user['DT_RowId'])."' method='post'>".csrf_field().method_field('DELETE')."
+            <form style='margin-top: 5px;' action='".url("admin/scoreCase/".$user['DT_RowId'])."' method='post'>".csrf_field().method_field('DELETE')."
               <button value='submit' class='btn btn-danger btn-block'>
                 <span class='glyphicon glyphicon-ban-circle pull-left'></span>Delete evaluation
               </button>

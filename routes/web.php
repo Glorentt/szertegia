@@ -129,14 +129,24 @@ Route::prefix('admin')->group(function (){
         Route::get('/scoreCase','admin\scoreController@casemanagers_scores')->name('admin.case.score');
         Route::get('/getScoresCase/data.json/all', ['uses' =>'admin\CaseManagerController@getAllScores']);
         Route::get('/getcommentsCase/{id}','admin\CaseManagerController@getComments');
+        Route::DELETE('/scoreCase/{id}','admin\CaseManagerController@destroy')->name('admin.case.score.delete');
         //Forex scores
-        Route::get('/scoreForex','admin\scoreController@forex_scores')->name('admin.forex.score');
-        Route::get('/getScoresForex/data.json/all', ['uses' =>'admin\ForexController@getAllScores']);
-        Route::get('/getcommentsForex/{id}','admin\ForexController@getComments');
+       
         //Homeowners scores
         Route::get('/scoreHomeowners','admin\scoreController@homeowners_scores')->name('admin.homeowners.score');
         Route::get('/getScoresHomeowners/data.json/all', ['uses' =>'admin\HomeownersController@getAllScores']);
         Route::get('/getcommentsHomeowners/{id}','admin\HomeownersController@getComments');
+
+        //LExington routes
+        Route::get('lexington','admin\LexingtonController@index')->name('admin.lexington.form');
+        Route::post('lexington','admin\LexingtonController@store')->name('admin.lexington.store');
+
+        //Lexington Scores
+        Route::get('/scoreLexington','admin\scoreController@lexington_scores')->name('admin.lexington.score');
+       
+        Route::get('/getScoresLexington/data.json/all', ['uses' =>'admin\LexingtonController@getAllScores']);
+        Route::DELETE('/scoreLexington/{id}','admin\LexingtonController@destroy')->name('admin.lexington.score.delete');
+        Route::get('/getcommentsLexington/{id}','admin\LexingtonController@getComments');
     });
 });
 
@@ -254,6 +264,12 @@ Route::prefix('agent')->group(function (){
             'edit'=>'agent.showslingers.edit',
             'update'=>'agent.showslingers.update'
         ]);
+
+        //Lexington Routes
+        Route::get('/scoreLexington/my','agent\LexingtonController@indexMyScores')->name('agent.lexington.myscore');
+        Route::get('/scoreLexington/getcomments/{id}','agent\LexingtonController@getMyComments');
+        Route::post('/scoreLexington/my','agent\LexingtonController@setAsRead');
+        Route::get('/scoreLexington/scoreLexington/my/data.json/my', ['uses' =>'agent\LexingtonController@getMyScores']);
 
         //Notes
         Route::resource('/notes','agent\NotesController')->names([

@@ -111,9 +111,8 @@
 						<ul class="list-unstyled">
 							<li><a href="{{route('admin.aftha.form')}} " id="sub_evaluate_aftha" >Aftha</a></li>
 							<li><a href="{{route('admin.case_manager.index')}} " id="sub_evaluate_aftha" >Case Manager</a></li>
-							<li><a href="{{route('admin.forex.form')}} " id="sub_evaluate_aftha" >Forex</a></li>
-							<!-- <li><a href="{{route('admin.homeowners.form')}} " id="sub_evaluate_aftha" >Homeowners</a></li> -->
-							<li><a id="sub_show" href="{{route('admin.showslingers.index')}} ">Bizwell</a></li>
+							<li><a href="{{route('admin.lexington.form')}} " id="sub_evaluate_aftha" >Lexington</a></li>
+							
 						</ul>
                     </li>
             	</ul>
@@ -126,9 +125,7 @@
 						</a>
 						<ul class="list-unstyled">
 							<li><a href="{{route('admin.users.index')}} " >All Users</a></li>
-							<!-- <li><a href="{{route('admin.users.index')}} " id="sub_evaluate_aftha" >Users log</a></li>
-							<li><a href="{{route('admin.users.index')}} " id="sub_evaluate_aftha" >Users sales</a></li>
-							<li><a href="{{route('admin.users.index')}} " id="sub_evaluate_aftha" >Users Campaigns</a></li> -->
+						
 						</ul>
 					</li>
 				</ul>
@@ -142,10 +139,8 @@
 						<ul class="list-unstyled">								
 							<li><a href="{{route('admin.aftha.score')}} " id="sub_evaluate_aftha" >Aftha</a></li>
 							<li><a href="{{route('admin.case.score')}} " id="sub_evaluate_aftha" >CaseManagers</a></li>
-							<li><a href="{{route('admin.forex.score')}} " id="sub_evaluate_aftha" >Forex</a></li>
-							<!-- <li><a href="{{route('admin.aftha.score')}} "  id="sub_evaluate_aftha" >All Campaigns</a></li> -->
-							<!-- <li><a href="{{route('admin.homeowners.score')}} " id="sub_evaluate_aftha" >Homeowners</a></li> -->
-							<li><a href="{{route('admin.showslinger.score')}} " id="sub_evaluate_aftha" >Bizwell</a></li>
+							<li><a href="{{route('admin.lexington.score')}} " id="sub_evaluate_aftha" >Lexington</a></li>
+						
 						</ul>
 					</li>
 				</ul>
