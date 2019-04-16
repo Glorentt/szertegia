@@ -206,17 +206,8 @@
                 </label>
                 <select class="custom-select" name="Q11" id="Q11" onchange="score()" required>
                   <option value="">Choose one option</option>
-                  <option value="0">0</option>
-                  <option value="0.6">1</option>
-                  <option value="1.2">2</option>
-                  <option value="1.8">3</option>
-                  <option value="2.4">4</option>
-                  <option value="3">5</option>
-                  <option value="3.6">6</option>
-                  <option value="4.2">7</option>
-                  <option value="4.8">8</option>
-                  <option value="5.4">9</option>
-                  <option value="6">10</option>
+                  <option value="6">Pass</option>
+                  <option value="0">Fail</option>
                 </select>
 
 
@@ -229,17 +220,8 @@
                 </label>
                 <select class="custom-select" name="Q12" id="Q12" onchange="score()" required>
                   <option value="">Choose one option</option>
-                  <option value="0">0</option>
-                  <option value="0.6">1</option>
-                  <option value="1.2">2</option>
-                  <option value="1.8">3</option>
-                  <option value="2.4">4</option>
-                  <option value="3">5</option>
-                  <option value="3.6">6</option>
-                  <option value="4.2">7</option>
-                  <option value="4.8">8</option>
-                  <option value="5.4">9</option>
-                  <option value="6">10</option>
+                  <option value="6">Pass</option>
+                  <option value="0">Fail</option>
                 </select>
 
 
@@ -252,17 +234,8 @@
                 </label>
                 <select class="custom-select" name="Q13" id="Q13" onchange="score()" required>
                   <option value="">Choose one option</option>
-                  <option value="0">0</option>
-                  <option value="0.8">1</option>
-                  <option value="1.6">2</option>
-                  <option value="2.4">3</option>
-                  <option value="3.2">4</option>
-                  <option value="4">5</option>
-                  <option value="4.8">6</option>
-                  <option value="5.6">7</option>
-                  <option value="6.4">8</option>
-                  <option value="7.2">9</option>
-                  <option value="8">10</option>
+                  <option value="8">Pass</option>
+                  <option value="0">Fail</option>
                 </select>
 
 
@@ -275,17 +248,8 @@
                 </label>
                 <select class="custom-select" name="Q14" id="Q14" onchange="score()" required>
                   <option value="">Choose one option</option>
-                  <option value="0">0</option>
-                  <option value="0.8">1</option>
-                  <option value="1.6">2</option>
-                  <option value="2.4">3</option>
-                  <option value="3.2">4</option>
-                  <option value="4">5</option>
-                  <option value="4.8">6</option>
-                  <option value="5.6">7</option>
-                  <option value="6.4">8</option>
-                  <option value="7.2">9</option>
-                  <option value="8">10</option>
+                  <option value="8">Pass</option>
+                  <option value="0">Fail</option>
                 </select>
 
 
@@ -299,17 +263,8 @@
                 </label>
                 <select class="custom-select" name="Q15" id="Q15" onchange="score()" required>
                   <option value="">Choose one option</option>
-                  <option value="0">0</option>
-                  <option value="0.8">1</option>
-                  <option value="1.6">2</option>
-                  <option value="2.4">3</option>
-                  <option value="3.2">4</option>
-                  <option value="4">5</option>
-                  <option value="4.8">6</option>
-                  <option value="5.6">7</option>
-                  <option value="6.4">8</option>
-                  <option value="7.2">9</option>
-                  <option value="8">10</option>
+                  <option value="8">Pass</option>
+                  <option value="0">Fail</option>
                 </select>
 
 
@@ -322,17 +277,8 @@
                 </label>
                 <select class="custom-select" name="Q16" id="Q16" onchange="score()" required>
                   <option value="">Choose one option</option>
-                  <option value="0">0</option>
-                  <option value="0.6">1</option>
-                  <option value="1.2">2</option>
-                  <option value="1.8">3</option>
-                  <option value="2.4">4</option>
-                  <option value="3">5</option>
-                  <option value="3.6">6</option>
-                  <option value="4.2">7</option>
-                  <option value="4.8">8</option>
-                  <option value="5.4">9</option>
-                  <option value="6">10</option>
+                  <option value="6">Pass</option>
+                  <option value="0">Fail</option>
                 </select>
 
 
@@ -345,17 +291,8 @@
                 </label>
                 <select class="custom-select" name="Q17" id="Q17" onchange="score()" required>
                   <option value="">Choose one option</option>
-                  <option value="0">0</option>
-                  <option value="0.8">1</option>
-                  <option value="1.6">2</option>
-                  <option value="2.4">3</option>
-                  <option value="3.2">4</option>
-                  <option value="4">5</option>
-                  <option value="4.8">6</option>
-                  <option value="5.6">7</option>
-                  <option value="6.4">8</option>
-                  <option value="7.2">9</option>
-                  <option value="8">10</option>
+                  <option value="8">Pass</option>
+                  <option value="0">Fail</option>
                 </select>
 
 
@@ -368,17 +305,8 @@
                 </label>
                 <select class="custom-select" name="Q18" id="Q18" onchange="score()" required>
                   <option value="">Choose one option</option>
-                  <option value="0">0</option>
-                  <option value="0.6">1</option>
-                  <option value="1.2">2</option>
-                  <option value="1.8">3</option>
-                  <option value="2.4">4</option>
-                  <option value="3">5</option>
-                  <option value="3.6">6</option>
-                  <option value="4.2">7</option>
-                  <option value="4.8">8</option>
-                  <option value="5.4">9</option>
-                  <option value="6">10</option>
+                  <option value="6">Pass</option>
+                  <option value="0">Fail</option>
                 </select>
 
 
@@ -391,17 +319,8 @@
                 </label>
                 <select class="custom-select" name="Q19" id="Q19" onchange="score()" required>
                   <option value="">Choose one option</option>
-                  <option value="0">0</option>
-                  <option value="0.8">1</option>
-                  <option value="1.6">2</option>
-                  <option value="2.4">3</option>
-                  <option value="3.2">4</option>
-                  <option value="4">5</option>
-                  <option value="4.8">6</option>
-                  <option value="5.6">7</option>
-                  <option value="6.4">8</option>
-                  <option value="7.2">9</option>
-                  <option value="8">10</option>
+                  <option value="8">Pass</option>
+                  <option value="0">Fail</option>
                 </select>
 
 
@@ -414,17 +333,8 @@
                 </label>
                 <select class="custom-select" name="Q20" id="Q20" onchange="score()" required>
                   <option value="">Choose one option</option>
-                  <option value="0">0</option>
-                  <option value="0.6">1</option>
-                  <option value="1.2">2</option>
-                  <option value="1.8">3</option>
-                  <option value="2.4">4</option>
-                  <option value="3">5</option>
-                  <option value="3.6">6</option>
-                  <option value="4.2">7</option>
-                  <option value="4.8">8</option>
-                  <option value="5.4">9</option>
-                  <option value="6">10</option>
+                  <option value="6">Pass</option>
+                  <option value="0">Fail</option>
                 </select>
 
 
