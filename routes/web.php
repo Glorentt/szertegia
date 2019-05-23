@@ -155,6 +155,10 @@ Route::prefix('admin')->group(function (){
         Route::get('sales/qualifier','admin\QualifierSalesController@index')->name('admin.sales.qualifier');
         Route::post('sales/qualifier/add','admin\QualifierSalesController@add')->name('admin.sales.qualifier.add');
         Route::post('sales/qualifier/minus','admin\QualifierSalesController@minus')->name('admin.sales.qualifier.minus');
+    
+        //Szertexington
+        Route::resource('/Szertexington', 'admin\SzertexingtonController');
+    
     });
 });
 
