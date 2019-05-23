@@ -36,6 +36,16 @@
                             <option value="1">Administrator</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="">Campaign</label>
+                        <select class="form-control" name="campaign" id="campaign">
+                            <option value="qualifier">qualifier</option>
+                            <option value="casemanager">casemanager</option>
+                            <option value="gateway">gateway</option>
+                            <option value="casemanageronline">casemanageronline</option>
+                            
+                        </select>
+                    </div>
                 </div>
                 <div class="col-md-6" >
                     <div class="form-group">

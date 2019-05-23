@@ -67,11 +67,11 @@ class UserController extends Controller
                                                               Reset password
                                                             </a>
                     										<form style='margin-top: 5px;'
-                    											action='".url("/".$user['DT_RowId'])."'
+                    											action='".url("/admin/users/".$user['DT_RowId'])."'
                     											method='post'>
                     												".csrf_field().
                     												method_field('DELETE')."
-                    												<a href='".url("/".$user['DT_RowId'])."'
+                    												<button value='".$user['DT_RowId']."' name='userID'
                     													class='btn btn-danger btn-block'><span class='glyphicon glyphicon-ban-circle pull-left'>
                     													</span>Delete User</a>
                     										</form>
@@ -133,6 +133,8 @@ class UserController extends Controller
         $user->role_id = $request['role_id'];
         $user->sup = $request['supID'];
         $user->phone= $request['phone'];
+        $user->campaign= $request['campaign'];
+
 
         if($user->save()){
             return redirect('admin/users')->with('success','Registered user successfully');
@@ -173,6 +175,7 @@ class UserController extends Controller
         $user->role_id = $request['editrole_id'];
         $user->sup = $request['editsupid'];
         $user->phone= $request['editphone'];
+        $user->campaign= $request['editcampaign'];
         if($user->save()){
             return redirect('admin/users')->with("success","Actualizado correctamente");
         }
@@ -195,11 +198,14 @@ class UserController extends Controller
         echo $usr['email'].",";
         $sup = User::find($usr['sup'])->toArray();
         echo $usr['sup'].",";
+        
         echo $sup['name'].",";
+        echo $usr['campaign'].",";
         echo $usr['phone'].",";
         $role = DB::table('roles')->find($usr['role_id']);
         echo $usr['role_id'].",";
         echo $role->role;
+        
 
 
     }
@@ -226,7 +232,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $users = User::find($id);
+        $users->delete();
+        return redirect('admin/users')->with('success','user deleted');
     }
     public function liveSearchNames($name){
         $users = User::select(array('id','name'))

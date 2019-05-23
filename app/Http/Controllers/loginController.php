@@ -24,11 +24,15 @@ class loginController extends Controller
             $usuario_actual = \Auth::user();
             $rol = Role::find($usuario_actual->role_id);
             $id = $usuario_actual->id;
-            var_dump($rol);
+         
             $name = explode(" ",$usuario_actual->name) ;
             \Session::put('id',$id);
             \Session::put('name',$name[0]);
             \Session::put('rol',$rol->role);
+            // var_dump($usuario_actual->campaign);
+            if (isset($usuario_actual->campaign)) {
+              \Session::put('campaign',$usuario_actual->campaign);
+            }
             \Session::put('email',$request->email);
             return redirect()->intended(route('inicio'));
         }

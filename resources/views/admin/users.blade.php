@@ -100,9 +100,12 @@ function showEdit(id) {
         $("#editname").val(datos[1]);
         $("#editemail").val(datos[2]);
         $("#editsupid").val(datos[3]);
+       
         $("#editsuperName").val(datos[4]);
-        $("#editphone").val(datos[5]);
-        $("#editrole_id").val(datos[6]);
+        $("#editcampaign").val(datos[5]);
+        $("#editphone").val(datos[6]);
+        $("#editrole_id").val(datos[7]);
+        
         $("#formEdit").attr("action","http://tracking.szertegia.dc/admin/users/"+id);
         // $("#formEdit").attr("method","put");
 

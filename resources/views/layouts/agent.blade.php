@@ -6,7 +6,7 @@
 
 		<title>Szertegia - @yield('title')</title>
 		<meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
-		<meta name="author" content="Pike Web Development - https://www.pikephp.com">
+		
 		<meta name="csrf-token" content="{{ csrf_token() }}" />
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="{{ asset('assets/images/miniatura-png.png')}} ">
@@ -27,7 +27,7 @@
 		<script src="{{asset('assets/js/jquery.min.js')}}"></script>
 </head>
 
-<body class="adminbody">
+<body class="adminbody"  >
 
 <div id="main">
 	<!-- top bar navigation -->
@@ -129,14 +129,14 @@
 							<!-- <li><a href="{{route('agent.showslingers.index')}} " id="sub_evaluate_aftha" >ShowSlinger</a></li> -->
 						</ul>
 					</li>
-					<!-- <li class="submenu">
-						<a href="#" id="sub_campaigns" ><i class="fa fa-fw fa-calendar-check-o"></i> <span> Campaigns scripts </span> <span class="active menu-arrow"></span></a>
+					<li class="submenu">
+						<a href="#" id="sub_campaigns" ><i class="fa fa-fw fa-money"></i> <span> Sales </span> <span class="active menu-arrow"></span></a>
 							<ul class="list-unstyled"> -->
-								<!-- <li><a href="{{route('agent.aftha.score')}} "  id="sub_evaluate_aftha" >All Campaigns</a></li> -->
-								<!-- <li><a href="{{route('agent.showslingers.index')}} " id="sub_evaluate_aftha" >Show Slinger</a></li>
+								<li><a href="{{route('agent.sales.qualifier')}} "  id="sub_evaluate_aftha" >Qualifiers</a></li>
+								 <!-- <li><a href="{{route('agent.showslingers.index')}} " id="sub_evaluate_aftha" >Show Slinger</a></li> -->
 
 							</ul>
-					</li> -->
+					</li>
             	</ul>
             <div class="clearfix"></div>
 		</div>

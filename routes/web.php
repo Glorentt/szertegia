@@ -11,6 +11,7 @@
 |
 */
 Route::get('curl','agent\timeController@Vicidial_login');
+Route::get('leads','admin\LeadsController@index');
 Route::get('time','agent\timeController@show_time');
 Route::get('paysheet','agent\timeController@paysheet');
 Route::prefix('admin')->group(function (){
@@ -78,7 +79,8 @@ Route::prefix('admin')->group(function (){
             'index'=>'admin.users.index',
             'store'=>'admin.users.store',
             'edit'=>'admin.users.edit',
-            'update'=>'admin.users.update'
+            'update'=>'admin.users.update',
+            'destroy'=>'admin.users.destroy'
         ]);
         Route::resource('/bizwell','admin\ShowSlingerController')->names([
             'index'=>'admin.showslingers.index',
@@ -147,6 +149,12 @@ Route::prefix('admin')->group(function (){
         Route::get('/getScoresLexington/data.json/all', ['uses' =>'admin\LexingtonController@getAllScores']);
         Route::DELETE('/scoreLexington/{id}','admin\LexingtonController@destroy')->name('admin.lexington.score.delete');
         Route::get('/getcommentsLexington/{id}','admin\LexingtonController@getComments');
+
+    //routes for sales 
+        Route::get('/sales','admin\SalesController@index')->name('admin.sales');
+        Route::get('sales/qualifier','admin\QualifierSalesController@index')->name('admin.sales.qualifier');
+        Route::post('sales/qualifier/add','admin\QualifierSalesController@add')->name('admin.sales.qualifier.add');
+        Route::post('sales/qualifier/minus','admin\QualifierSalesController@minus')->name('admin.sales.qualifier.minus');
     });
 });
 
@@ -276,6 +284,14 @@ Route::prefix('agent')->group(function (){
             'index'=>'agent.notes',
             'store'=>'agent.note.store'
         ]);
+        //sales
+        Route::get('/sales','agent\SalesController@index')->name('agent.sales');
+        Route::get('sales/qualifier','agent\QualifierSalesController@index')->name('agent.sales.qualifier');
+        //tracktime
+        Route::get('tracktime','agent\TracktimeController@index')->name('agent.tracktime');
+        Route::post('tracktime','agent\TracktimeController@store')->name('agent.tracktime.store');
+        Route::post('tracktime/pause','agent\TracktimeController@break')->name('agent.tracktime.break');
+       
     });
 });
 

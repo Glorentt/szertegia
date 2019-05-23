@@ -13,7 +13,7 @@ class timeController extends Controller
 // Set some options - we are passing in a useragent too here
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL => "800:1234@homeowners.vicihost.com/vicidial/AST_agent_performance_detail.php?DB=&query_date=2018-10-02&query_time=00%3A00%3A00&end_date=2018-10-06&end_time=23%3A59%3A59&group[]=--ALL--&user_group[]=Szertegia&users[]=--ALL--&breakdown_by_date=checked&report_display_type=TEXT&shift=--&SUBMIT=SUBMIT",
+            CURLOPT_URL => "1800:1234@homeowners.vicihost.com/vicidial/AST_agent_performance_detail.php?DB=&query_date=2018-10-02&query_time=00%3A00%3A00&end_date=2018-10-06&end_time=23%3A59%3A59&group[]=--ALL--&user_group[]=Szertegia&users[]=--ALL--&breakdown_by_date=checked&report_display_type=TEXT&shift=--&SUBMIT=SUBMIT",
             // CURLOPT_URL => 'http://800:1234@homeowners.vicihost.com/vicidial/AST_agent_performance_detail.php?DB=&query_date=2018-10-01&query_time=00%3A00%3A00&end_date=2018-10-06&end_time=23%3A59%3A59&group%5B%5D=10&group%5B%5D=20&group%5B%5D=30&group%5B%5D=40&group%5B%5D=99999&user_group%5B%5D=Szertegia&users%5B%5D=--ALL--&breakdown_by_date=checked&report_display_type=HTML&shift=--&SUBMIT=SUBMIT',
             CURLOPT_USERAGENT => 'Codular Sample cURL Request'
         ));

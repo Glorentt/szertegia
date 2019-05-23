@@ -46,6 +46,16 @@
                         <small id="name" class="form-text text-muted">Help text</small>
                     </div>
                     <div class="form-group">
+                        <label for="">Campaign</label>
+                        <select class="form-control" name="editcampaign" id="editcampaign">
+                            <option value="qualifier">qualifier</option>
+                            <option value="casemanager">casemanager</option>
+                            <option value="gateway">gateway</option>
+                            <option value="casemanageronline">casemanageronline</option>
+                            
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="">Phone number</label>
                         <input type="text"
                         class="form-control" name="editphone" pattern="\d*" maxlength="10" id="editphone" aria-describedby="name" 

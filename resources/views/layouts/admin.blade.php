@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
+		
 		<title>Szertegia - @yield('title')</title>
 		<meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
 		<meta name="author" content="Pike Web Development - https://www.pikephp.com">
@@ -27,7 +28,7 @@
 		<script src="{{asset('assets/js/jquery.min.js')}}"></script>
 </head>
 
-<body class="adminbody">
+<body class="adminbody" >
 
 <div id="main">
 	<!-- top bar navigation -->
@@ -154,6 +155,25 @@
 						<ul class="list-unstyled">
 							<li><a href="{{route('admin.forms.index')}}" id="sub_quiz" >Formularios</a></li>
 							<li><a href="{{route('admin.questions.index')}}" id="sub_quiz" >Preguntas</a></li>
+							<li><a href="{{route('admin.answers.index')}}" id="sub_quiz" >Respuestas</a></li>
+							<li><a href="{{route('admin.makequizzes.index')}}" id="sub_quiz" >Make Quiz</a></li>
+							<li><a href="{{route('admin.exams.index')}}" id="sub_quiz" >Start Exam</a></li>
+							<!-- <li><a href="#" id="sub_quiz" >Lista de Campañas</a></li> -->
+							<!-- <li><a href="#" id="sub_quiz" >Tipo de Respuesta</a></li> -->
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<ion-icon name="clipboard"></ion-icon>
+					<li class="submenu">
+						<a href="#" id="sub_sales">
+							<i class="fa fa-clipboard"></i>
+							<span>Sales</span><span class="active menu-arrow"></span>
+						</a>
+						
+						<ul class="list-unstyled">
+							<li><a href="{{route('admin.sales')}}" id="sub_quiz" >All Campaigns</a></li>
+							<li><a href="{{route('admin.sales.qualifier')}}" id="sub_quiz" >Qualifiers</a></li>
 							<li><a href="{{route('admin.answers.index')}}" id="sub_quiz" >Respuestas</a></li>
 							<li><a href="{{route('admin.makequizzes.index')}}" id="sub_quiz" >Make Quiz</a></li>
 							<li><a href="{{route('admin.exams.index')}}" id="sub_quiz" >Start Exam</a></li>
