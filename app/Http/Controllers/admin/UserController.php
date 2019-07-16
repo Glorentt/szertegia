@@ -205,9 +205,6 @@ class UserController extends Controller
         $role = DB::table('roles')->find($usr['role_id']);
         echo $usr['role_id'].",";
         echo $role->role;
-        
-
-
     }
 
     /**

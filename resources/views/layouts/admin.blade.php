@@ -113,7 +113,7 @@
 							<li><a href="{{route('admin.aftha.form')}} " id="sub_evaluate_aftha" >Aftha</a></li>
 							<li><a href="{{route('admin.case_manager.index')}} " id="sub_evaluate_aftha" >Case Manager</a></li>
 							<li><a href="{{route('admin.lexington.form')}} " id="sub_evaluate_aftha" >Lexington</a></li>
-							
+							<li><a href="{{route('admin.Szertexington.index')}} " id="sub_evaluate_aftha" >Work Your Credit</a></li>
 						</ul>
                     </li>
             	</ul>
@@ -141,7 +141,7 @@
 							<li><a href="{{route('admin.aftha.score')}} " id="sub_evaluate_aftha" >Aftha</a></li>
 							<li><a href="{{route('admin.case.score')}} " id="sub_evaluate_aftha" >CaseManagers</a></li>
 							<li><a href="{{route('admin.lexington.score')}} " id="sub_evaluate_aftha" >Lexington</a></li>
-						
+							<li><a href="{{route('admin.Szertexington.score')}} " id="sub_evaluate_aftha" >Work Your Credit</a></li>
 						</ul>
 					</li>
 				</ul>

@@ -95,6 +95,7 @@ Route::prefix('admin')->group(function (){
             'edit'=>'admin.case_manager.edit',
             'update'=>'admin.case_manager.update'
         ]);
+
         Route::resource('/forex','admin\ForexController')->names([
             'index'=>'admin.forex.index',
             'store'=>'admin.forex.store',
@@ -150,14 +151,24 @@ Route::prefix('admin')->group(function (){
         Route::DELETE('/scoreLexington/{id}','admin\LexingtonController@destroy')->name('admin.lexington.score.delete');
         Route::get('/getcommentsLexington/{id}','admin\LexingtonController@getComments');
 
-    //routes for sales 
+        //routes for sales 
         Route::get('/sales','admin\SalesController@index')->name('admin.sales');
         Route::get('sales/qualifier','admin\QualifierSalesController@index')->name('admin.sales.qualifier');
         Route::post('sales/qualifier/add','admin\QualifierSalesController@add')->name('admin.sales.qualifier.add');
         Route::post('sales/qualifier/minus','admin\QualifierSalesController@minus')->name('admin.sales.qualifier.minus');
     
         //Szertexington
-        Route::resource('/Szertexington', 'admin\SzertexingtonController');
+        Route::resource('/Szertexington','admin\SzertexingtonController')->names([
+                    'index'=>'admin.Szertexington.index',
+                    'store'=>'admin.Szertexington.store',
+                    'edit'=>'admin.Szertexington.edit',
+                    'update'=>'admin.Szertexington.update'
+            ]);
+            //Szertexington score
+        Route::get('/scoreSzertexington','admin\scoreController@Szertexington_scores')->name('admin.Szertexington.score');
+        Route::get('/getScoresSzertexington/data.json/all', ['uses' =>'admin\SzertexingtonController@getAllScores']);
+        Route::get('/getcommentsSzertexington/{id}','admin\SzertexingtonController@getComments');
+        Route::DELETE('/scoreSzertexington/{id}','admin\SzertexingtonController@destroy')->name('admin.Szertexington.score.delete');
     
     });
 });
@@ -294,7 +305,7 @@ Route::prefix('agent')->group(function (){
         //tracktime
         Route::get('tracktime','agent\TracktimeController@index')->name('agent.tracktime');
         Route::post('tracktime','agent\TracktimeController@store')->name('agent.tracktime.store');
-        Route::post('tracktime/pause','agent\TracktimeController@break')->name('agent.tracktime.break');
+        Route::post('tracktime/pause','agent\TracktimeController@startbreak')->name('agent.tracktime.break');
        
     });
 });

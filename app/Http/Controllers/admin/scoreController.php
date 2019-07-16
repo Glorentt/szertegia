@@ -25,4 +25,7 @@ class scoreController extends Controller
     Public function lexington_scores(){
         return view('admin.scores_lexington');
     }
+    Public function Szertexington_scores(){
+        return view('admin.Szertexington.scores_Szertexington');
+    }
 }

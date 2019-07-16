@@ -13,7 +13,7 @@
 <div class="row">
     <div class="col-xl-12">
             <div class="breadcrumb-holder">
-                    <h1 class="main-title float-left"> <a href="{{route('admin.aftha.score')}} "> Scores</a></h1>
+                    <h1 class="main-title float-left"> <a href="{{route('admin.Szertexington.score')}} "> Scores</a></h1>
                     <ol class="breadcrumb float-right">
                         <li class="breadcrumb-item">Home</li>
                         <li class="breadcrumb-item active">Scores</li>
@@ -28,7 +28,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <div class="card mb-3">
             <div class="card-header">
-                <h3><i class="fa fa-table"></i> Case Managers scores</h3>
+                <h3><i class="fa fa-table"></i> Work Your Credit scores</h3>
                 All the scores will be displayed bellow,
             </div>
 
@@ -85,104 +85,50 @@
                         <p id="c2"></p></label>
                     </div>
                     <div class='form-group col-md-6' >
-                    <label for="Q1" class='text-primary' >1.-Did the agent say mention call is being recorded? if applicable <strong class="text-danger">olsi</strong>
+                    <label for="Q1" class='text-primary' >1.-Call being recorded <strong class="text-danger">olsi</strong>
                     <p id="c3" class="text-secondary">No comments</p></label>
 
                     </div>
                     <div class='form-group col-md-6' >
-                    <label for="Q2" class='text-primary'>2.-Did the agent mention the company name,his/ her name ?
+                    <label for="Q2" class='text-primary'>2.-Did agent mention his/her name and company name? 
                     <p id="c4" class="text-secondary">No comments</p></label>
 
                     </div>
                     <div class='form-group col-md-6' >
-                    <label for="Q3" class='text-primary'>3.-Agent offered further assistance at end of the call
+                    <label for="Q3" class='text-primary'>3.-Agent used probing questions? (2 questions min)
                     <p id="c5" class="text-secondary">No comments</p></label>
 
                     </div>
                     <div class='form-group col-md-6' >
-                    <label for="Q4" class='text-primary'>4.- Did the agent answer quickly and correctly?(less than 2 seconds).<p id="c6" class="text-secondary">No comments</p></label>
+                    <label for="Q4" class='text-primary'>4.- Does agent sound engage?
+                    <p id="c6" class="text-secondary">No comments</p></label>
 
                     </div>
                     <div class='form-group col-md-6' >
-                    <label for="Q5" class='text-primary'>5.-If the call was transferred did the agent adapt the greeting accordingly??
+                    <label for="Q5" class='text-primary'>5.-Did the agent pitch credit repair correctly? (Mentioned lex law)
                     <p id="c7" class="text-secondary">No comments</p></label>
 
                     </div>
                     <div class='form-group col-md-6' >
-                    <label for="Q6" class='text-primary'>6.-Did the agent ask for / confirm the caller's information?
+                    <label for="Q6" class='text-primary'>6.-Correct hand-off procedure
                     <p id="c8" class="text-secondary">No comments</p></label>
 
                     </div>
                     <div class='form-group col-md-6' >
-                    <label for="Q7" class='text-primary'>7.-The agent sound confident /focused?
+                    <label for="Q7" class='text-primary'>7.-Tone of voice (Don´t sound sleepy,robotic,upset)
                     <p id="c9" class="text-secondary">No comments</p></label>
 
                     </div>
 
-<div class='form-group col-md-6' >
-                    <label for="Q8" class='text-primary'>8.-The agent took control/ownership of the call.
+                    <div class='form-group col-md-6' >
+                    <label for="Q8" class='text-primary'>8.-Correct disposition 
                     <p id="c10" class="text-secondary">No comments</p></label>
-
                     </div>
-                    <div class='form-group col-md-6' >
-                    <label for="Q9" class='text-primary'>9.-Did the agent disposition correctly?
-				including knowing when to rebuttal a callback?
-                    <p id="c11" class="text-secondary">No comments</p></label>
-
-                    </div>
-
-                    <div class='form-group col-md-6' >
-                    <label for="Q10" class='text-primary'>10.-Agent avoided long silences during the call?
-                    <p id="c12" class="text-secondary">No comments</p></label>
-
-                    </div>
-                    <div class='form-group col-md-6' >
-                        <label for="Q11" class='text-primary'>11.-Full details of the call were obtained and understood
-                        <p id="c13" class="text-secondary">No comments</p></label>
-                    </div>
-                    <div class='form-group col-md-6' >
-                        <label for="Q12" class='text-primary'>12.-The agent offered an appropriate timescale for a solution
-                        <p id="c14" class="text-secondary">No comments</p></label>
-                    </div>
-                    <div class='form-group col-md-6' >
-                        <label for="Q13" class='text-primary'>13.-The customer was notified of all relevant documentation
-                        <p id="c15" class="text-secondary">No comments</p></label>
-                    </div>
-                    <div class='form-group col-md-6' >
-                        <label for="Q14" class='text-primary'>14.-Empathy/rapport was attempted to be built
-                        <p id="c16" class="text-secondary">No comments</p></label>
-                    </div>
-                    <div class='form-group col-md-6' >
-                        <label for="Q15" class='text-primary'>15.-Correct procedures followed for transferring cx?If applicable
-                        <p id="c17" class="text-secondary">No comments</p></label>
-                    </div>
-                    <div class='form-group col-md-6' >
-                        <label for="Q16" class='text-primary'>16.-Agent did not interrupt or talk over the customer
-                        <p id="c18" class="text-secondary">No comments</p></label>
-                    </div>
-                    <div class='form-group col-md-6' >
-                        <label for="Q17" class='text-primary'>17.-Agent used effective questioning/probing skills
-                        <p id="c19" class="text-secondary">No comments</p></label>
-                    </div>
-                    <div class='form-group col-md-6' >
-                        <label for="Q18" class='text-primary'>18.-Agent demonstrated active listening
-                        <p id="c20" class="text-secondary">No comments</p></label>
-                    </div>
-                    <div class='form-group col-md-6' >
-                        <label for="Q18" class='text-primary'>19.-Agent displayed a professional,friendly,welcoming manner throughout the call
-                        <p id="c21" class="text-secondary">No comments</p></label>
-                    </div>
-                    <div class='form-group col-md-6' >
-                        <label for="Q18" class='text-primary'>20.-Agent went the extra mile for best customer experience
-                        <p id="c22" class="text-secondary">No comments</p></label>
-                    </div>
-
-
 
                  </div>
                  <div><div class='form-group col-md-12' >
                     <label for="Qf" class='text-primary'>Final:
-                    <p id="c23" class="text-secondary">No Comments</p></label>
+                    <p id="c11" class="text-secondary">No Comments</p></label>
 
                     </div>
                 </div>
@@ -198,7 +144,7 @@
 
 <script>
 function showComments(val) {
-    $.ajax({url: "getcommentsCase/"+val, success: function(result){
+    $.ajax({url: "getcommentsSzertexington/"+val, success: function(result){
         var arraycomments = result.split('=>');
         console.log(arraycomments);
         var length = arraycomments.length-1;
@@ -316,7 +262,7 @@ var table = $('#scoreTable').DataTable( {
             [ '10 rows', '25 rows', '50 rows', 'Show all' ]
         ],
         "ajax": {
-            "url": "getScoresCase/data.json/all"
+            "url": "getScoresSzertexington/data.json/all"
         },
 
 "footerCallback": function ( row, data, start, end, display ) {

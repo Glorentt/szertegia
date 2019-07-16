@@ -120,7 +120,7 @@
                     </div>
 
 <div class='form-group col-md-6' >
-                    <label for="Q8" class='text-primary'>8.-The agent took ownership of the call.
+                    <label for="Q8" class='text-primary'>8.-The agent took control/ownership of the call.
                     <p id="c10" class="text-secondary">No comments</p></label>
 
                     </div>

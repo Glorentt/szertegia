@@ -156,7 +156,7 @@
               </div>
 
               <div class="form-group">
-                <label for="Q8">8.- The agent took ownership of the call.
+                <label for="Q8">8.- The agent took control/ownership of the call.
                 </label>
                 <select class="custom-select" name="Q8" id="Q8" onchange="score()" required>
                   <option value="">Choose one option</option>

@@ -106,7 +106,7 @@ function showEdit(id) {
         $("#editphone").val(datos[6]);
         $("#editrole_id").val(datos[7]);
         
-        $("#formEdit").attr("action","http://tracking.szertegia.dc/admin/users/"+id);
+        $("#formEdit").attr("action","https://tracking.szertegia.dc/admin/users/"+id);
         // $("#formEdit").attr("method","put");
 
 

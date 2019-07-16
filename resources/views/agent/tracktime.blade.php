@@ -30,11 +30,11 @@
                 <i class="fa fa-play fa-2x float-right text-white"></i>
                 <h6 class="text-white text-uppercase m-b-20">Active</h6>
                 <div class="text-white form-group">
-                @if($time == null)
+                @if($mytime == null)
                     <p id="activeTime">00:00:00</p>
                 @endif
-                @if($time != null)
-                    <p id="activeTime">{{$time}}</p>
+                @if($mytime != null)
+                    <p id="activeTime">{{$mytime}}</p>
                 @endif
                 </div>
             </a>
@@ -144,14 +144,15 @@
     }
 
     function pause(exit = null) {
+        
         if (exit != null) {
             return;
         }
-//donde es
+        //donde es
         if (!document.getElementById("divactive").classList.contains('bg-success')) {
             return;
         }
-
+        
         clearTimeout(time)
         active("exit");
         
@@ -163,11 +164,14 @@
         }
         while (!commentario) {
             var commentario = prompt("insert why did you pause")
+
         }
+        saveBreak(commentario)
         $('#break').removeAttr("onclick");
         incrementBreak()
 
     }
+
 
     function out(){
 
@@ -181,7 +185,7 @@
 </script>
 <script>
 
-    function saveBreak() {
+    function saveBreak(com) {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -195,7 +199,7 @@
             url: "tracktime/pause",
             data: {
                 active: activetime,
-                comment: commentario,
+                comment: com,
                 id: userid
             }
         })
