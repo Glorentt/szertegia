@@ -1,6 +1,6 @@
-@extends('layouts.agent')
+@extends('layouts.admin')
 
-@section('title', 'Sales Qualifier')
+@section('title', 'All MLS')
 
 @section('content')
 <script>
@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-xl-12">
         <div class="breadcrumb-holder">
-            <h1 class="main-title float-left"> <a href="">Qualifier</a></h1>
+            <h1 class="main-title float-left"> <a href="{{route('admin.forms.index')}} ">MLS</a></h1>
             <ol class="breadcrumb float-right">
                 <li class="breadcrumb-item">Home</li>
                 <li class="breadcrumb-item active">Sales</li>
@@ -34,26 +34,40 @@
                     <table id="salessTable" class="table table-borderless table-hover display" >
                         <thead class="indigo white-text">
                             <tr>
-                                
+                                <th class="center">id</th>
                                 <th class="center">User name</th>
                                 <th class="center">Sales</th>
-                             
+                                <th class="center">Amount</th>
+                                <th class="center">Action</th>
 
                             </tr>
                         </thead>
                         <tbody class="blue-grey lighten-5">
                             @foreach($users as $sale)
                             <tr id="{{$sale->id}}">
-                              
+                                <td class="center">{{ $sale->id}}</td>
                                 <td class="center">{{$sale->name }} </td>
 
                                 @if($sale->sales != null)
                                 
                                 <td class="center">{{$sale->sales}}</td>
                                 
+                                <td> ${{ $sale->sales * 30 }}</td>
+                                <td width="7%">
+                                    <form method="POST" action="{{route('admin.sales.mls.add')}} ">
+                                        <input type="hidden" value="{{$sale->id}}" name="id"/>
+                                        <input type="submit" value="+1" class="btn btn-success btn-sm " />
+                                        @csrf
+                                    </form>
+                                </td>
+                                <td  style="padding-right: 0px; padding-left: 0px">
+                                    <form method="POST" action="{{route('admin.sales.mls.minus')}} ">
+                                        @csrf
+                                        <input type="hidden" value="{{$sale->id}}" name="id"/>
+                                        <input type="submit" value="-1" class="btn btn-warning btn-sm " />
+                                    </form>
+                                </td>
                                 
-                            
-                              
 
                                 @endif
 
@@ -61,7 +75,14 @@
                                 <td class="center" >
                                     <div id='{{$sale->id}}' class="tdsale {{$sale->id}}">0</div>
                                 </td>
-                              
+                                <td> ${{ $sale->sales * 30 }}</td>
+                                <td width="7%">
+                                    <form method="POST" action="{{route('admin.sales.mls.add')}} ">
+                                        <input type="hidden" value="{{$sale->id}}" name="id"/>
+                                        <input type="submit" value="+1" class="btn btn-success btn-sm " />
+                                        @csrf
+                                    </form>
+                                </td>
                                 
 
 

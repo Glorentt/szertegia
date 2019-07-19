@@ -131,8 +131,13 @@
 					</li>
 					<li class="submenu">
 						<a href="#" id="sub_campaigns" ><i class="fa fa-fw fa-money"></i> <span> Sales </span> <span class="active menu-arrow"></span></a>
-							<ul class="list-unstyled"> -->
+							<ul class="list-unstyled">
+							    @if (Session('campaign') == "qualifier")
 								<li><a href="{{route('agent.sales.qualifier')}} "  id="sub_evaluate_aftha" >Qualifiers</a></li>
+								@endif
+								@if (Session('campaign') == "mls")
+								<li><a href="{{route('agent.sales.mls')}} "  id="sub_evaluate_aftha" >MLS</a></li>
+								@endif
 								 <!-- <li><a href="{{route('agent.showslingers.index')}} " id="sub_evaluate_aftha" >Show Slinger</a></li> -->
 
 							</ul>

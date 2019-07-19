@@ -1,6 +1,6 @@
 @extends('layouts.agent')
 
-@section('title', 'Sales Qualifier')
+@section('title', 'Sales MLS')
 
 @section('content')
 <script>
@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-xl-12">
         <div class="breadcrumb-holder">
-            <h1 class="main-title float-left"> <a href="">Qualifier</a></h1>
+            <h1 class="main-title float-left"> <a href="">MLS</a></h1>
             <ol class="breadcrumb float-right">
                 <li class="breadcrumb-item">Home</li>
                 <li class="breadcrumb-item active">Sales</li>
@@ -37,6 +37,7 @@
                                 
                                 <th class="center">User name</th>
                                 <th class="center">Sales</th>
+                                <th class="center">Amount</th>
                              
 
                             </tr>
@@ -50,7 +51,7 @@
                                 @if($sale->sales != null)
                                 
                                 <td class="center">{{$sale->sales}}</td>
-                                
+                                <td class="center">${{$sale->sales *30}}</td>
                                 
                             
                               
@@ -62,7 +63,7 @@
                                     <div id='{{$sale->id}}' class="tdsale {{$sale->id}}">0</div>
                                 </td>
                               
-                                
+                                <td class="center">${{$sale->sales *30}}</td>
 
 
                                 <!-- <span class="btn btn-success btn-sm" onclick="addSale('{{$sale->id}}')" ><i class="fa fa-plus fa-sm" ></i></span> -->

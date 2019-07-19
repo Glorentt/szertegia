@@ -156,7 +156,11 @@ Route::prefix('admin')->group(function (){
         Route::get('sales/qualifier','admin\QualifierSalesController@index')->name('admin.sales.qualifier');
         Route::post('sales/qualifier/add','admin\QualifierSalesController@add')->name('admin.sales.qualifier.add');
         Route::post('sales/qualifier/minus','admin\QualifierSalesController@minus')->name('admin.sales.qualifier.minus');
-    
+        Route::get('sales/mls','admin\MlsSalesController@index')->name('admin.sales.mls');
+        Route::post('sales/mls/add','admin\MlsSalesController@add')->name('admin.sales.mls.add');
+        Route::post('sales/mls/minus','admin\MlsSalesController@minus')->name('admin.sales.mls.minus');
+
+
         //Szertexington
         Route::resource('/Szertexington','admin\SzertexingtonController')->names([
                     'index'=>'admin.Szertexington.index',
@@ -302,6 +306,7 @@ Route::prefix('agent')->group(function (){
         //sales
         Route::get('/sales','agent\SalesController@index')->name('agent.sales');
         Route::get('sales/qualifier','agent\QualifierSalesController@index')->name('agent.sales.qualifier');
+        Route::get('sales/mls','agent\MlsSalesController@index')->name('agent.sales.mls');
         //tracktime
         Route::get('tracktime','agent\TracktimeController@index')->name('agent.tracktime');
         Route::post('tracktime','agent\TracktimeController@store')->name('agent.tracktime.store');

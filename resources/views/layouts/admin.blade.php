@@ -174,9 +174,10 @@
 						<ul class="list-unstyled">
 							<li><a href="{{route('admin.sales')}}" id="sub_quiz" >All Campaigns</a></li>
 							<li><a href="{{route('admin.sales.qualifier')}}" id="sub_quiz" >Qualifiers</a></li>
-							<li><a href="{{route('admin.answers.index')}}" id="sub_quiz" >Respuestas</a></li>
+							<li><a href="{{route('admin.sales.mls')}}" id="sub_quiz" >MLS</a></li>
+							<!-- <li><a href="{{route('admin.answers.index')}}" id="sub_quiz" >Respuestas</a></li>
 							<li><a href="{{route('admin.makequizzes.index')}}" id="sub_quiz" >Make Quiz</a></li>
-							<li><a href="{{route('admin.exams.index')}}" id="sub_quiz" >Start Exam</a></li>
+							<li><a href="{{route('admin.exams.index')}}" id="sub_quiz" >Start Exam</a></li> -->
 							<!-- <li><a href="#" id="sub_quiz" >Lista de Campañas</a></li> -->
 							<!-- <li><a href="#" id="sub_quiz" >Tipo de Respuesta</a></li> -->
 						</ul>
