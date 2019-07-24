@@ -174,6 +174,7 @@ Route::prefix('admin')->group(function (){
         Route::get('/getcommentsSzertexington/{id}','admin\SzertexingtonController@getComments');
         Route::DELETE('/scoreSzertexington/{id}','admin\SzertexingtonController@destroy')->name('admin.Szertexington.score.delete');
     
+        Route::get("only-for-u-bb",'admin\MlsSalesController@report')->name('admin.sales.report.mls');
     });
 });
 
@@ -301,8 +302,11 @@ Route::prefix('agent')->group(function (){
         //Notes
         Route::resource('/notes','agent\NotesController')->names([
             'index'=>'agent.notes',
-            'store'=>'agent.note.store'
+            'store'=>'agent.note.store',
+            'destroy' => "agent.notes.destroy"
         ]);
+        Route::get("notes/delete/paco/{id}","agent\NotesController@borrarPerro")->name("agent.notes.destroy.paco");
+      
         //sales
         Route::get('/sales','agent\SalesController@index')->name('agent.sales');
         Route::get('sales/qualifier','agent\QualifierSalesController@index')->name('agent.sales.qualifier');

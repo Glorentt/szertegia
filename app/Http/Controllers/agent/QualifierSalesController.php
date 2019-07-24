@@ -23,6 +23,7 @@ class QualifierSalesController extends Controller
         })
         ->select('id','name','sales.sales as sales')
         ->where('campaign','=','qualifier')
+        ->orderBy('sales','desc')
         ->get();
 
         return view('agent.sales.qualifier.index',compact('users'));

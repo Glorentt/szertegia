@@ -5,6 +5,7 @@ use App\notes;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+
 class NotesController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class NotesController extends Controller
     public function index()
     {
         $id = \Session::get('id');
-        $notes = notes::select(array('*'))->where('user_id',$id)->get();
+        $notes = notes::select(array('*'))->where('user_id',$id)->orderBy("created_at","desc")->get();
         
         // foreach ($notes as $key => $value) {
         //     echo $value->id;
@@ -94,6 +95,12 @@ class NotesController extends Controller
      */
     public function destroy($id)
     {
-        //
+       //    
+    }
+    public function borrarPerro($id){
+        $users = Notes::find($id);
+        $users->delete();
+
+        return  redirect(route('agent.notes'));
     }
 }

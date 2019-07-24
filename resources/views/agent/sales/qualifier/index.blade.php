@@ -51,10 +51,6 @@
                                 
                                 <td class="center">{{$sale->sales}}</td>
                                 
-                                
-                            
-                              
-
                                 @endif
 
                                 @if($sale->sales == null)

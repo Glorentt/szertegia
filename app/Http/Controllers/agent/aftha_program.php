@@ -140,7 +140,7 @@ class aftha_program extends Controller
         ->leftJoin('users as users_table','users_table.id','=','aftha_qualities.user_id')
         ->leftJoin('users as quality_table','quality_table.id','=','aftha_qualities.QA_id')
         ->where('users_table.id',$idUser)
-        ->orderBy('aftha_qualities.created_at','DESC')
+        ->orderBy('aftha_qualities.created_at','desc')
         ->take(800)
         ->get();
                     
