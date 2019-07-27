@@ -22,6 +22,7 @@ class MlsSalesController extends Controller
         })
         ->select('id','name','sales.sales as sales')
         ->where('campaign','=','mls')
+        ->orderBy('sales','desc')
         ->get();
 
         return view('agent.sales.mls.index',compact('users'));

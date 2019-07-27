@@ -41,4 +41,8 @@ class MlsSalesController extends Controller
             return redirect()->route('admin.sales.mls')->with('error','hay pedo');
         }
     }
+
+    public function report($date = null){
+       
+    }
 }

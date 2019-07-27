@@ -114,15 +114,22 @@
 							<span> Scores </span> <span class="active menu-arrow"></span>
 						</a>
 						<ul class="list-unstyled">
+							@if (Session('campaign') == "qualifier")
 							<li><a href="{{route('agent.aftha.score')}} " id="sub_evaluate_aftha" >Aftha</a></li>
 							<li><a href="{{route('agent.aftha.myscore')}} " id="sub_evaluate_aftha" >My Aftha Scores</a></li>
-
+							@endif
+							@if (Session('campaign') == "casemanager")
 							<li><a href="{{route('agent.case.score')}} " id="sub_evaluate_aftha" >CaseManagers</a></li>
 							<li><a href="{{route('agent.case.myscore')}} " id="sub_evaluate_aftha" >My CaseManager Scores</a></li>
+							@endif
 							
-							<li><a href="{{route('agent.lexington.myscore')}} " id="sub_evaluate_aftha" >My Lexington Scores</a></li>
+
+
+							{{-- <li><a href="{{route('agent.lexington.myscore')}} " id="sub_evaluate_aftha" >My Lexington Scores</a></li>
 							<li><a href="{{route('agent.sudzy.score')}} " id="sub_evaluate_aftha" >Sudzy</a></li>
-							<li><a href="{{route('agent.bizwell.score')}} " id="sub_evaluate_aftha" >Bizwell</a></li>
+							<li><a href="{{route('agent.bizwell.score')}} " id="sub_evaluate_aftha" >Bizwell</a></li> --}}
+
+
 							<!-- <li><a >Sudzy</a></li> -->
 							<!-- <li><a >Bizwell</a></li> -->
 							<!-- <li><a href="{{route('agent.aftha.score')}} "  id="sub_evaluate_aftha" >All Campaigns</a></li> -->
@@ -130,7 +137,9 @@
 						</ul>
 					</li>
 					<li class="submenu">
-						<a href="#" id="sub_campaigns" ><i class="fa fa-fw fa-money"></i> <span> Sales </span> <span class="active menu-arrow"></span></a>
+						<a href="#" id="sub_campaigns" >
+							<i class="fa fa-fw fa-money"></i> 
+							<span> Sales </span> <span class="active menu-arrow"></span></a>
 							<ul class="list-unstyled">
 							    @if (Session('campaign') == "qualifier")
 								<li><a href="{{route('agent.sales.qualifier')}} "  id="sub_evaluate_aftha" >Qualifiers</a></li>

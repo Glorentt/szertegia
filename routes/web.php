@@ -174,7 +174,7 @@ Route::prefix('admin')->group(function (){
         Route::get('/getcommentsSzertexington/{id}','admin\SzertexingtonController@getComments');
         Route::DELETE('/scoreSzertexington/{id}','admin\SzertexingtonController@destroy')->name('admin.Szertexington.score.delete');
     
-        Route::get("only-for-u-bb",'admin\MlsSalesController@report')->name('admin.sales.report.mls');
+        Route::get("sales/mls/report",'admin\MlsSalesController@report')->name('admin.sales.report.mls');
     });
 });
 
